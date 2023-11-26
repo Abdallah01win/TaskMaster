@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import HelloWorld from '@/components/HelloWorld.vue';
+import ToDoList from '@/components/ToDoList.vue';
 </script>
 
 <template>
   <main>
-    <HelloWorld msg="hello from TS & Vue" /> 
+    <ToDoList />
   </main>
 </template>
