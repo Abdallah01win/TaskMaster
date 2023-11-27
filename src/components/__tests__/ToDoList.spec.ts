@@ -1,12 +1,15 @@
-import { describe, it, expect } from 'vitest'
-
+import { createPinia, setActivePinia } from 'pinia'
+import { beforeAll, describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import ToDoListVue from '@/components/ToDoList.vue'
+import ToDoList from '@/components/ToDoList.vue'
 
-describe('ToDoList', () => {
+beforeAll(() => {
+  setActivePinia(createPinia())
+})
+
+describe('HelloWorld', () => {
   it('renders properly', () => {
-    //const wrapper = mount(ToDoListVue)
-    //const formElement = wrapper.find('form')
-    expect(true).toBe(true)
+    const wrapper = mount(ToDoList)
+    expect(wrapper).toBeTruthy()
   })
 })

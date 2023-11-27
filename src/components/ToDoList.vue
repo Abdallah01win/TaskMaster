@@ -25,7 +25,7 @@ const create = () => {
         <div class="toDoList">
             <div>
                 <div v-for="(todo, index) in toDos" :key="todo.id" @click="completeTodo(todo.id)">
-                    {{ index+1 }} - {{ todo.title }} - {{ todo.completed ? 'done' : 'not done' }}
+                    {{ index + 1 }} - {{ todo.title }} - {{ todo.completed ? 'done' : 'not done' }}
                 </div>
                 <div class="flex justify-between">
                     <div>Total: {{ total }}</div>
