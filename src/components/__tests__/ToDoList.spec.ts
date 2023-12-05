@@ -7,7 +7,7 @@ beforeAll(() => {
   setActivePinia(createPinia())
 })
 
-describe('HelloWorld', () => {
+describe('ToDoList', () => {
   it('renders properly', () => {
     const wrapper = mount(ToDoList)
     expect(wrapper).toBeTruthy()
