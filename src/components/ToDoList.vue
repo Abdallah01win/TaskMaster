@@ -21,7 +21,7 @@ const create = () => {
 </script>
 
 <template>
-    <div class="w-fit bg-dark-200 rounded-xl p-12">
+    <div class="bg-dark-300 rounded-xl p-12">
         <div class="toDoList">
             <div>
                 <div v-for="(todo, index) in toDos" :key="todo.id" @click="completeTodo(todo.id)">
