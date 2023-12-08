@@ -1,17 +1,23 @@
 <script setup lang="ts">
-import { useTodoStore } from "@/stores/toDo"
+import { useTaskStore } from "@/stores/task"
+import { useListStore } from "@/stores/list";
 import { storeToRefs } from "pinia"
 import { ref } from "vue"
 
-const toDosStore = useTodoStore()
-const { toDos, total, completedTodos, nextId } = storeToRefs(toDosStore)
-const { addTodo, completeTodo } = toDosStore
+const tasksStore = useTaskStore()
+const listsStore = useListStore()
+
+const { listTasks, total, completedTasks, nextId } = storeToRefs(tasksStore)
+const { selectedList } = storeToRefs(listsStore)
+
+const { addTask, completeTask } = tasksStore
 
 const todoItem = ref("")
 
 const create = () => {
-  addTodo({
+  addTask({
     id: nextId.value,
+    listId: selectedList.value,
     title: todoItem.value,
     completed: false,
   })
@@ -22,15 +28,15 @@ const create = () => {
 
 <template>
   <div class="bg-dark-300 rounded-xl p-12">
-    <div class="toDoList">
+    <div class="taskList">
       <div>
-        <div v-for="(todo, index) in toDos" :key="todo.id" @click="completeTodo(todo.id)">
+        <div v-for="(todo, index) in listTasks" :key="todo.id" @click="completeTask(todo.id)">
           {{ index + 1 }} - {{ todo.title }} -
           {{ todo.completed ? "done" : "not done" }}
         </div>
         <div class="flex justify-between">
           <div>Total: {{ total }}</div>
-          <div>Done: {{ completedTodos.length + "/" + total }}</div>
+          <div>Done: {{ completedTasks.length + "/" + total }}</div>
         </div>
       </div>
     </div>

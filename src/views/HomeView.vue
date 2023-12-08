@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import ToDoList from "@/components/ToDoList.vue"
+import TasksList from '@/components/TasksList.vue';
 </script>
 
 <template>
   <main>
-    <ToDoList />
+    <TasksList />
   </main>
 </template>
