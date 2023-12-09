@@ -1,14 +1,18 @@
 <script setup lang="ts">
 import { ref } from "vue"
 import { useTaskStore } from "@/stores/task"
-import { useListStore } from "@/stores/list";
 import { storeToRefs } from "pinia"
 
+const props = defineProps({
+    selectedList: {
+        type: Number,
+        required: true
+    }
+})
+
 const tasksStore = useTaskStore()
-const listsStore = useListStore()
 
 const { nextId } = storeToRefs(tasksStore)
-const { selectedList } = storeToRefs(listsStore)
 const { addTask } = tasksStore
 
 const todoItem = ref("")
@@ -16,7 +20,7 @@ const todoItem = ref("")
 const create = () => {
     addTask({
         id: nextId.value,
-        listId: selectedList.value,
+        listId: props.selectedList,
         title: todoItem.value,
         completed: false,
     })

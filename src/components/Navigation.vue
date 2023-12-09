@@ -12,8 +12,10 @@ const showInput = ref(false)
 const newListName = ref('')
 
 const createNewList = (name: string) => {
-  createList(name)
-  newListName.value = ''
+  if (newListName.value) {
+    createList(name)
+    newListName.value = ''
+  }
 }
 </script>
 
