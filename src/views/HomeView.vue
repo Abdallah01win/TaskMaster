@@ -3,7 +3,7 @@ import TasksList from '@/components/TasksList.vue';
 </script>
 
 <template>
-  <main>
+  <main class="h-full">
     <TasksList />
   </main>
 </template>
