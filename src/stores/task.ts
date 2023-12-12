@@ -12,7 +12,7 @@ export interface task {
 export const useTaskStore = defineStore("task", () => {
   const listStore = useListStore()
 
-  const tasks = ref<Array<task>>([])
+  const tasks = ref<task[]>([])
   const nextId = ref<number>(1)
 
   const listTasks = computed(() => {

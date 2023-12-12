@@ -6,7 +6,7 @@ export interface List {
   name: string
 }
 
-const defaultLists: Array<List> = [
+const defaultLists: List[] = [
   {
     id: 1,
     name: "My Day",
@@ -18,7 +18,7 @@ const defaultLists: Array<List> = [
 ]
 
 export const useListStore = defineStore("list", () => {
-  const lists = ref<Array<List>>([...defaultLists])
+  const lists = ref<List[]>([...defaultLists])
   const selectedList = ref<number>(defaultLists[0].id)
 
   const getSelectedList = computed(() => {

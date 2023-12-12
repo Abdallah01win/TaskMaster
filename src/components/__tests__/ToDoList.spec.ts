@@ -1,15 +1,15 @@
 import { createPinia, setActivePinia } from "pinia"
 import { beforeAll, describe, it, expect } from "vitest"
 import { mount } from "@vue/test-utils"
-import ToDoList from "@/components/ToDoList.vue"
+import TasksList from "@/components/TasksList.vue"
 
 beforeAll(() => {
   setActivePinia(createPinia())
 })
 
-describe("ToDoList", () => {
+describe("TasksList", () => {
   it("renders properly", () => {
-    const wrapper = mount(ToDoList)
+    const wrapper = mount(TasksList)
     expect(wrapper).toBeTruthy()
   })
 })
