@@ -25,7 +25,7 @@ const { completeTask } = tasksStore
               <ph-circle v-show="!task.completed" :size="20" />
               <ph-check-circle v-show="task.completed" :size="20" />
             </div>
-            <div>
+            <div :class="task.completed ? 'line-through text-white/40' : ''">
               {{ task.title }}
             </div>
           </div>

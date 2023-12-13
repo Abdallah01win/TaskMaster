@@ -2,6 +2,7 @@
 import { ref } from "vue"
 import { useTaskStore } from "@/stores/task"
 import { storeToRefs } from "pinia"
+import { capitalize } from "@/helpers/index"
 
 const props = defineProps({
     selectedList: {
@@ -21,7 +22,7 @@ const create = () => {
     addTask({
         id: nextId.value,
         listId: props.selectedList,
-        title: todoItem.value.toLocaleLowerCase(),
+        title: capitalize(todoItem.value),
         completed: false,
     })
 
