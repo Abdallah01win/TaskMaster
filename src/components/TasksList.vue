@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { PhCircle, PhCheckCircle } from "@phosphor-icons/vue"
+
 import TaskForm from "./TaskForm.vue";
 import { useTaskStore } from "@/stores/task"
 import { useListStore } from "@/stores/list";
@@ -14,18 +16,24 @@ const { completeTask } = tasksStore
 
 <template>
   <div class="flex flex-col h-full">
-    <div class="text-3xl mb-4">{{ currentListInfo?.name }}</div>
-    <div class="bg-dark-300 rounded-xl p-12">
+    <div class="text-3xl mb-4 font-semibold">{{ currentListInfo?.name }}</div>
+    <div class="">
       <div class="taskList">
-        <div>
-          <div v-for="(todo, index) in listTasks" :key="todo.id" @click="completeTask(todo.id)">
-            {{ index + 1 }} - {{ todo.title }} -
-            {{ todo.completed ? "done" : "not done" }}
+        <div class="flex flex-col gap-y-2">
+          <div v-for="task in listTasks" :key="task.id" class="flex items-center bg-dark-300 rounded-md px-4 py-2.5">
+            <div class="cursor-pointer mr-2" @click="completeTask(task.id)">
+              <ph-circle v-show="!task.completed" :size="20" />
+              <ph-check-circle v-show="task.completed" :size="20" />
+            </div>
+            <div>
+              {{ task.title }}
+            </div>
           </div>
-          <div class="flex justify-between">
+
+          <!-- <div class="flex justify-between">
             <div>Total: {{ total }}</div>
             <div>Done: {{ completedTasks.length + "/" + total }}</div>
-          </div>
+          </div> -->
         </div>
       </div>
 
