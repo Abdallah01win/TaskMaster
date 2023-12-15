@@ -2,6 +2,7 @@
 import { ref } from "vue"
 import { useTaskStore } from "@/stores/task"
 import { storeToRefs } from "pinia"
+import { capitalize } from "@/helpers/index"
 
 const props = defineProps({
     selectedList: {
@@ -21,7 +22,7 @@ const create = () => {
     addTask({
         id: nextId.value,
         listId: props.selectedList,
-        title: todoItem.value,
+        title: capitalize(todoItem.value),
         completed: false,
     })
 
@@ -29,7 +30,7 @@ const create = () => {
 }
 </script>
 <template>
-    <div class="bg-dark-300 rounded-xl p-6">
+    <div class="bg-dark-300 rounded-md p-5">
         <form @submit.prevent="create">
             <input v-model="todoItem" type="text" name="title" placeholder="Add a task" class="text-black w-full" />
         </form>
