@@ -1,6 +1,7 @@
 import { ref, computed } from "vue"
 import { defineStore } from "pinia"
 import { useListStore } from "./list"
+import { capitalize } from "@/helpers/index"
 
 export interface task {
   id: number
@@ -30,7 +31,7 @@ export const useTaskStore = defineStore("task", () => {
   const total = computed(() => listTasks.value.length)
 
   function addTask(task: task) {
-    tasks.value.push(task)
+    tasks.value.push({ ...task, title: capitalize(task.title) })
     nextId.value++
   }
 

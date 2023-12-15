@@ -32,7 +32,7 @@ describe("TaskForm", () => {
     const task = store.tasks.find((task: any) => task.id === 5)
     expect(task).toEqual({
       id: 5,
-      title: "testTask",
+      title: "TestTask",
       listId: 1,
       completed: false,
     })

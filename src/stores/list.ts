@@ -1,5 +1,6 @@
 import { ref, computed } from "vue"
 import { defineStore } from "pinia"
+import { capitalize } from "@/helpers/index"
 
 export interface List {
   id: number
@@ -46,7 +47,7 @@ export const useListStore = defineStore("list", () => {
   function createList(name: string) {
     lists.value.push({
       id: nextId.value,
-      name,
+      name: capitalize(name),
       icon: "ph-list",
     })
   }
