@@ -4,16 +4,24 @@ import { defineStore } from "pinia"
 export interface List {
   id: number
   name: string
+  icon: string
 }
 
 const defaultLists: List[] = [
   {
     id: 1,
     name: "My Day",
+    icon: "ph-sun",
   },
   {
     id: 2,
     name: "Important",
+    icon: "ph-circle",
+  },
+  {
+    id: 3,
+    name: "Favorites",
+    icon: "ph-star",
   },
 ]
 
@@ -39,6 +47,7 @@ export const useListStore = defineStore("list", () => {
     lists.value.push({
       id: nextId.value,
       name,
+      icon: "ph-list",
     })
   }
 
