@@ -14,7 +14,7 @@ describe("TaskForm", () => {
     store.nextId = 5
   })
 
-  it("renders properly", () => {
+  it("Renders properly", () => {
     const wrapper = mount(TaskForm)
     expect(wrapper).toBeTruthy()
   })
