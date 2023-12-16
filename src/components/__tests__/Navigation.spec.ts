@@ -2,6 +2,7 @@ import { createPinia, setActivePinia } from "pinia"
 import { describe, it, expect, beforeAll } from "vitest"
 import { mount } from "@vue/test-utils"
 import { useListStore } from "@/stores/list"
+import type { List } from "@/stores/list"
 import Navigation from "@/components/Navigation.vue"
 
 describe("Navigation", () => {
@@ -26,7 +27,7 @@ describe("Navigation", () => {
     const wrapper = mount(Navigation)
     await wrapper.find("input").setValue("testList")
     await wrapper.find("form").trigger("submit")
-    const list = store.lists.find((list: any) => list.name === "TestList")
+    const list = store.lists.find((list: List) => list.name === "TestList")
 
     expect(list).toEqual({ id: 4, name: "TestList", icon: "ph-list" })
   })

@@ -3,7 +3,7 @@ import { defineStore } from "pinia"
 import { useListStore } from "./list"
 import { capitalize } from "@/helpers/index"
 
-export interface task {
+export interface Task {
   id: number
   listId: number
   title: string
@@ -13,7 +13,7 @@ export interface task {
 export const useTaskStore = defineStore("task", () => {
   const listStore = useListStore()
 
-  const tasks = ref<task[]>([])
+  const tasks = ref<Task[]>([])
   const nextId = ref<number>(1)
 
   const listTasks = computed(() => {
@@ -30,7 +30,7 @@ export const useTaskStore = defineStore("task", () => {
 
   const total = computed(() => listTasks.value.length)
 
-  function addTask(task: task) {
+  function addTask(task: Task) {
     tasks.value.push({ ...task, title: capitalize(task.title) })
     nextId.value++
   }
