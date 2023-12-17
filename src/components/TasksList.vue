@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import { Icon } from '@iconify/vue';
 import { useTaskStore } from "@/stores/task"
+import type { Task } from "@/stores/task";
 import { useListStore } from "@/stores/list";
 import { storeToRefs } from "pinia"
 import TaskForm from "./TaskForm.vue";
+import TaskDetails from './TaskDetails.vue';
 
 const tasksStore = useTaskStore()
 const listStore = useListStore()
@@ -11,15 +14,19 @@ const listStore = useListStore()
 const { listTasks, total, completedTasks } = storeToRefs(tasksStore)
 const { currentListInfo } = storeToRefs(listStore)
 const { completeTask } = tasksStore
+
+const selectedTask = ref<Task | null>(null)
+
 </script>
 
 <template>
   <div class="flex flex-col h-full">
     <div class="text-3xl mb-4 font-semibold">{{ currentListInfo?.name }}</div>
-    <div class="">
+    <div class="grid grid-cols-[1fr_.6fr] gap-x-6">
       <div class="taskList">
         <div class="flex flex-col gap-y-2">
-          <div v-for="task in listTasks" :key="task.id" class="flex items-center bg-dark-300 rounded-md px-4 py-2.5 task">
+          <div v-for="task in listTasks" :key="task.id"
+            class="flex items-center bg-dark-300 rounded-md px-4 py-2.5 task cursor-pointer" @click="selectedTask = task">
             <div class="cursor-pointer mr-2" @click="completeTask(task.id)">
               <Icon v-show="!task.completed" icon="ph-circle" />
               <Icon v-show="task.completed" icon="ph-check-circle" />
@@ -36,6 +43,7 @@ const { completeTask } = tasksStore
         </div>
       </div>
 
+      <TaskDetails v-show="selectedTask" :task="selectedTask" />
     </div>
     <TaskForm class="mt-auto" :selected-list="currentListInfo?.id" />
   </div>

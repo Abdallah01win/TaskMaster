@@ -8,6 +8,8 @@ export interface Task {
   listId: number
   title: string
   completed: boolean
+  description?: string
+  dueDate?: string
 }
 
 export const useTaskStore = defineStore("task", () => {
