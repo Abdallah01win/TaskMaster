@@ -29,9 +29,10 @@ const create = () => {
 }
 </script>
 <template>
-    <div class="bg-dark-300 rounded-md p-5">
+    <div class="bg-dark-100 rounded-md p-5">
         <form @submit.prevent="create">
-            <input v-model="todoItem" type="text" name="title" placeholder="Add a task" class="text-black w-full" />
+            <input v-model="todoItem" type="text" name="title" placeholder="Add a task"
+                class="bg-transparent text-white w-full focus:outline-none" />
         </form>
     </div>
 </template>

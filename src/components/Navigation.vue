@@ -52,7 +52,7 @@ const createNewList = (name: string) => {
             </div>
             <form @submit.prevent="createNewList(newListName)" class="shrink">
               <input v-model="newListName" type="text" name="listName" placeholder="Add new list"
-                class="text-black w-full px-2" />
+                class="w-full px-2 bg-transparent text-white focus:outline-none" />
             </form>
           </div>
         </div>
