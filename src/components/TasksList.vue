@@ -29,7 +29,7 @@ const resetSelectedTask = () => {
       <div class="taskList">
         <div class="flex flex-col gap-y-3">
           <div v-for="task in listTasks" :key="task.id"
-            class="flex items-center bg-dark-300 rounded-md px-4 py-2.5 task cursor-pointer"
+            class="flex items-center bg-dark-300 rounded-md px-4 py-2.5 cursor-pointer"
             @click.self="selectedTask = task">
             <div class="cursor-pointer mr-2" @click="completeTask(task.id)">
               <Icon v-show="!task.completed" icon="ph-circle" />

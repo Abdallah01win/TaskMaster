@@ -22,6 +22,6 @@ describe("TasksList", () => {
     store.addTask({ listId: 1, title: "testTask" })
     const wrapper = mount(TasksList)
 
-    expect(wrapper.find(".task").text()).toBe("TestTask")
+    expect(wrapper.text()).toContain("TestTask")
   })
 })

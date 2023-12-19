@@ -24,12 +24,12 @@ const createNewList = (name: string) => {
   <nav class="px-4 flex items-center justify-between py-2 bg-dark-100 h-[var(--nav-height)]">
     <div>TodoApp</div>
   </nav>
-  <section class="flex h-[var(--main-height)] w-full border-t border-gray-700/40">
+  <section class="flex h-[var(--main-height)] w-full border-t border-ash">
     <aside class="bg-dark-100 w-60 flex flex-col">
       <ul class="text-sm">
         <li v-for="list in lists" :key="list.id"
-          class="flex items-center gap-x-2 py-2 px-4 border-b border-gray-700/40 hover:bg-dark-200"
-          :class="selectedList === list.id ? 'bg-dark-200' : ''" @click="setSelectedList(list.id)">
+          class="flex items-center gap-x-2 py-2 px-4 border-b border-ash hover:bg-dark-200"
+          :class="selectedList === list.id ? 'bg-dark-300' : ''" @click="setSelectedList(list.id)">
           <span>
             <Icon :icon="list.icon" />
           </span>
@@ -38,7 +38,7 @@ const createNewList = (name: string) => {
       </ul>
 
       <div class="mt-auto">
-        <div class="py-3 px-4 border-t border-gray-700/40">
+        <div class="py-3 px-4 border-t border-ash">
           <div v-show="!showInput" class="flex items-center gap-x-4 cursor-pointer" @click="showInput = true">
             <span>
               <Icon icon="ph-plus" />

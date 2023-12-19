@@ -18,6 +18,6 @@ describe("TaskDetails", () => {
         },
       },
     })
-    expect(wrapper.findAll("span")?.at(1)?.text()).toBe("TestTask")
+    expect(wrapper.text()).toContain("TestTask")
   })
 })

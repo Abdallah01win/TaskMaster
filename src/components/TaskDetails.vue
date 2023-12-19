@@ -19,7 +19,7 @@ const emit = defineEmits(['close'])
         </div>
         <div>
             <div class="bg-dark-200 rounded-md px-4 py-2.5">
-                <span class="text-xl">{{ task?.title }}</span>
+                <span class="/text-lg">{{ task?.title }}</span>
             </div>
         </div>
     </div>
