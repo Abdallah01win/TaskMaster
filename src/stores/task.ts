@@ -8,6 +8,7 @@ export interface Task {
   listId: number
   title: string
   completed: boolean
+  createdAt: string
   description?: string
   dueDate?: string
 }
@@ -33,8 +34,17 @@ export const useTaskStore = defineStore("task", () => {
   const total = computed(() => listTasks.value.length)
 
   function addTask(task: Task) {
-    tasks.value.push({ ...task, title: capitalize(task.title) })
+    const newTask = { ...task, title: capitalize(task.title) }
+    tasks.value.push(newTask)
     nextId.value++
+  }
+
+  function setTaskInfo(id: number, data: Partial<Task>) {
+    const task = tasks.value.find((task) => task.id === id)
+    if (task) {
+      task.description = data?.description
+      task.dueDate = data?.dueDate
+    }
   }
 
   function completeTask(id: number) {
@@ -54,9 +64,10 @@ export const useTaskStore = defineStore("task", () => {
     remainingTasks,
     completedTasks,
     nextId,
+    listTasks,
     addTask,
+    setTaskInfo,
     completeTask,
     removeTask,
-    listTasks,
   }
 })

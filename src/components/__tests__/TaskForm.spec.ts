@@ -33,6 +33,7 @@ describe("TaskForm", () => {
     expect(task).toEqual({
       id: 5,
       title: "TestTask",
+      createdAt: new Date().toISOString(),
       listId: 1,
       completed: false,
     })

@@ -23,6 +23,7 @@ const create = () => {
         listId: props.selectedList,
         title: todoItem.value,
         completed: false,
+        createdAt: new Date().toISOString()
     })
 
     todoItem.value = ""
