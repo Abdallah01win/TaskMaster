@@ -1,12 +1,12 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { Icon } from '@iconify/vue';
-import { storeToRefs } from "pinia"
-import { useListStore } from '@/stores/list';
-import { ref } from "vue";
+import { Icon } from '@iconify/vue'
+import { storeToRefs } from 'pinia'
+import { useListStore } from '@/stores/list'
+import { ref } from 'vue'
 
-const listsStore = useListStore();
-const { lists, selectedList } = storeToRefs(listsStore);
+const listsStore = useListStore()
+const { lists, selectedList } = storeToRefs(listsStore)
 const { setSelectedList, createList } = listsStore
 
 const showInput = ref(false)
@@ -27,9 +27,13 @@ const createNewList = (name: string) => {
   <section class="flex h-[var(--main-height)] w-full border-t border-ash">
     <aside class="bg-dark-100 w-60 flex flex-col">
       <ul class="text-sm">
-        <li v-for="list in lists" :key="list.id"
+        <li
+          v-for="list in lists"
+          :key="list.id"
           class="flex items-center gap-x-2 py-2 px-4 border-b border-ash hover:bg-dark-200"
-          :class="selectedList === list.id ? 'bg-dark-300' : ''" @click="setSelectedList(list.id)">
+          :class="selectedList === list.id ? 'bg-dark-300' : ''"
+          @click="setSelectedList(list.id)"
+        >
           <span>
             <Icon :icon="list.icon" />
           </span>
@@ -51,8 +55,13 @@ const createNewList = (name: string) => {
               <Icon icon="ph-x" />
             </div>
             <form @submit.prevent="createNewList(newListName)" class="shrink">
-              <input v-model="newListName" type="text" name="listName" placeholder="Add new list"
-                class="w-full px-2 bg-transparent text-white focus:outline-none" />
+              <input
+                v-model="newListName"
+                type="text"
+                name="listName"
+                placeholder="Add new list"
+                class="w-full px-2 bg-transparent text-white focus:outline-none"
+              />
             </form>
           </div>
         </div>

@@ -1,7 +1,7 @@
-import { ref, computed } from "vue"
-import { defineStore } from "pinia"
-import { useListStore } from "./list"
-import { capitalize } from "@/helpers/index"
+import { ref, computed } from 'vue'
+import { defineStore } from 'pinia'
+import { useListStore } from './list'
+import { capitalize } from '@/helpers/index'
 
 export interface Task {
   id: number
@@ -13,7 +13,7 @@ export interface Task {
   dueDate?: string
 }
 
-export const useTaskStore = defineStore("task", () => {
+export const useTaskStore = defineStore('task', () => {
   const listStore = useListStore()
 
   const tasks = ref<Task[]>([])

@@ -1,6 +1,6 @@
-import { ref, computed } from "vue"
-import { defineStore } from "pinia"
-import { capitalize } from "@/helpers/index"
+import { ref, computed } from 'vue'
+import { defineStore } from 'pinia'
+import { capitalize } from '@/helpers/index'
 
 export interface List {
   id: number
@@ -11,22 +11,22 @@ export interface List {
 const defaultLists: List[] = [
   {
     id: 1,
-    name: "My Day",
-    icon: "ph-sun",
+    name: 'My Day',
+    icon: 'ph-sun',
   },
   {
     id: 2,
-    name: "Important",
-    icon: "ph-circle",
+    name: 'Important',
+    icon: 'ph-circle',
   },
   {
     id: 3,
-    name: "Favorites",
-    icon: "ph-star",
+    name: 'Favorites',
+    icon: 'ph-star',
   },
 ]
 
-export const useListStore = defineStore("list", () => {
+export const useListStore = defineStore('list', () => {
   const lists = ref<List[]>([...defaultLists])
   const selectedList = ref<number>(defaultLists[0].id)
 
@@ -48,7 +48,7 @@ export const useListStore = defineStore("list", () => {
     lists.value.push({
       id: nextId.value,
       name: capitalize(name),
-      icon: "ph-list",
+      icon: 'ph-list',
     })
   }
 
