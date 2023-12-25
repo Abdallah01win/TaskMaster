@@ -3,12 +3,15 @@ export const capitalize = (str: string) => {
 }
 
 export const formatDate = (date: string) => {
-  const formattedDate = new Date(date).toLocaleDateString(undefined, {
+  const dateOptions = {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
-  })
-  const formattedTime = new Date(date).toLocaleTimeString(undefined, { hour: 'numeric', minute: 'numeric' })
+  }
+  const timeOptions = { hour: 'numeric', minute: 'numeric' }
+
+  const formattedDate = new Date(date).toLocaleDateString(undefined, dateOptions)
+  const formattedTime = new Date(date).toLocaleTimeString(undefined, timeOptions)
 
   return { date: formattedDate, time: formattedTime }
 }

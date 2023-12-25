@@ -34,7 +34,10 @@ export const useTaskStore = defineStore('task', () => {
   const total = computed(() => listTasks.value.length)
 
   function addTask(task: Task) {
-    const newTask = { ...task, title: capitalize(task.title) }
+    const newTask = {
+      ...task,
+      title: capitalize(task.title),
+    }
     tasks.value.push(newTask)
     nextId.value++
   }

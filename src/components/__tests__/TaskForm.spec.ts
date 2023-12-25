@@ -7,24 +7,25 @@ import TaskForm from '@/components/TaskForm.vue'
 
 describe('TaskForm', () => {
   let store: any
+  let props: any
 
   beforeAll(() => {
     setActivePinia(createPinia())
     store = useTaskStore()
     Object.assign(store, { selectedList: 1, nextId: 5 })
+
+    props = {
+      selectedList: store?.selectedList,
+    }
   })
 
   it('Renders properly', () => {
-    const wrapper = mount(TaskForm)
+    const wrapper = mount(TaskForm, { props })
     expect(wrapper).toBeTruthy()
   })
 
   it('Adds Tasks to the store', async () => {
-    const wrapper = mount(TaskForm, {
-      props: {
-        selectedList: store.selectedList,
-      },
-    })
+    const wrapper = mount(TaskForm, { props })
 
     await wrapper.find('input').setValue('testTask')
     await wrapper.find('form').trigger('submit')
