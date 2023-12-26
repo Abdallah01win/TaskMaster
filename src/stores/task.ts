@@ -45,7 +45,7 @@ export const useTaskStore = defineStore('task', () => {
   function setTaskInfo(id: number, data: Partial<Task>) {
     const task = tasks.value.find((task) => task.id === id)
     if (task) {
-      task.description = data?.description
+      task.description = capitalize(data?.description ?? '')
       task.dueDate = data?.dueDate
     }
   }

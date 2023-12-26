@@ -12,12 +12,14 @@ describe('TaskDetails', () => {
     listId: 1,
     title: 'TestTask',
     completed: false,
+    description: '',
     createdAt: '2022-01-01T00:00:00.000Z',
   }
 
   beforeAll(() => {
     setActivePinia(createPinia())
     store = useTaskStore()
+    Object.assign(store, { tasks: [task] })
   })
 
   it('Renders properly', () => {
@@ -31,6 +33,15 @@ describe('TaskDetails', () => {
     expect(wrapper.text()).toContain(formatDate(task.createdAt).date)
   })
 
-  // updates task description in store
+  it('Updates task description', async () => {
+    const wrapper = mount(TaskDetails, { props: { task } })
+    const input = wrapper.find('input[name="description"]')
+
+    await input.setValue('test description')
+    await input.trigger('keypress.enter')
+
+    expect(store.tasks[0].description).toBe('Test description')
+  })
+
   // updates task dueDate in store
 })

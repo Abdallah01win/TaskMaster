@@ -62,7 +62,7 @@ const saveInfo = () => {
             v-else
             v-model="form.description"
             type="text"
-            class="bg-transparent focus:outline-none"
+            class="bg-transparent focus:outline-none w-full"
             name="description"
             placeholder="Description"
             @keypress.enter="saveInfo"
@@ -78,7 +78,7 @@ const saveInfo = () => {
             :min="minDate"
             v-model="form.dueDate"
             @change="saveInfo"
-            class="bg-transparent focus:outline-none text-gray-300"
+            class="bg-transparent focus:outline-none text-gray-300 w-full"
           />
         </div>
       </div>
