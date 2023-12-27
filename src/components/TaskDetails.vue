@@ -43,7 +43,7 @@ const saveInfo = () => {
   <div>
     <div class="bg-dark-300 rounded-md px-4 py-4">
       <div class="flex justify-end pb-4">
-        <Icon icon="ph-x" class="cursor-pointer" @click="emit('close')"></Icon>
+        <Icon icon="ph-x" class="cursor-pointer w-5 h-5" @click="emit('close')"></Icon>
       </div>
 
       <div class="flex flex-col gap-y-2.5">
@@ -70,18 +70,35 @@ const saveInfo = () => {
         </div>
 
         <div class="bg-dark-200 rounded-md px-4 py-2.5">
-          <span v-if="task?.dueDate">{{ formatDate(task?.dueDate).date }}</span>
+          <div v-if="task?.dueDate" class="flex items-center justify-between">
+            <span>{{ formatDate(task?.dueDate).date }}</span>
+            <span>{{ formatDate(task?.dueDate).time }}</span>
+          </div>
+
           <input
             v-else
-            type="date"
+            class="bg-transparent focus:outline-none text-gray-300 w-full"
             placeholder="Due Date"
+            type="text"
+            onfocus="(this.type='datetime-local')"
             :min="minDate"
             v-model="form.dueDate"
             @change="saveInfo"
-            class="bg-transparent focus:outline-none text-gray-300 w-full"
           />
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+input[type='datetime-local']::-webkit-calendar-picker-indicator {
+  color: white;
+  opacity: 1;
+  display: block;
+  background: url('@/assets/icons/calendarIcon.svg') no-repeat;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+</style>

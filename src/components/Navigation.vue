@@ -30,12 +30,12 @@ const createNewList = (name: string) => {
         <li
           v-for="list in lists"
           :key="list.id"
-          class="flex items-center gap-x-2 py-2 px-4 border-b border-ash hover:bg-dark-200"
+          class="flex items-center gap-x-2.5 py-2 px-4 border-b border-ash hover:bg-dark-200"
           :class="selectedList === list.id ? 'bg-dark-300' : ''"
           @click="setSelectedList(list.id)"
         >
           <span>
-            <Icon :icon="list.icon" />
+            <Icon :icon="list.icon" class="w-4 h-4" />
           </span>
           <span>{{ list.name }}</span>
         </li>
@@ -45,14 +45,14 @@ const createNewList = (name: string) => {
         <div class="py-3 px-4 border-t border-ash">
           <div v-show="!showInput" class="flex items-center gap-x-4 cursor-pointer" @click="showInput = true">
             <span>
-              <Icon icon="ph-plus" />
+              <Icon icon="ph-plus" class="w-4 h-4" />
             </span>
             <span>Add new list</span>
           </div>
 
           <div v-show="showInput" class="flex items-center gap-x-4">
             <div @click="showInput = false" class="cursor-pointer">
-              <Icon icon="ph-x" />
+              <Icon icon="ph-x" class="w-4 h-4" />
             </div>
             <form @submit.prevent="createNewList(newListName)" class="shrink">
               <input

@@ -19,19 +19,19 @@ export const useTaskStore = defineStore('task', () => {
   const tasks = ref<Task[]>([])
   const nextId = ref<number>(1)
 
-  const listTasks = computed(() => {
+  const tasksList = computed(() => {
     return tasks.value.filter((task) => task.listId === listStore.selectedList)
   })
 
   const remainingTasks = computed(() => {
-    return listTasks.value.filter((task) => !task.completed)
+    return tasksList.value.filter((task) => !task.completed)
   })
 
   const completedTasks = computed(() => {
-    return listTasks.value.filter((task) => task.completed)
+    return tasksList.value.filter((task) => task.completed)
   })
 
-  const total = computed(() => listTasks.value.length)
+  const total = computed(() => tasksList.value.length)
 
   function addTask(task: Task) {
     const newTask = {
@@ -67,7 +67,7 @@ export const useTaskStore = defineStore('task', () => {
     remainingTasks,
     completedTasks,
     nextId,
-    listTasks,
+    tasksList,
     addTask,
     setTaskInfo,
     completeTask,

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import type { Task } from '@/stores/task'
+import { ref, watch } from 'vue'
 import { Icon } from '@iconify/vue'
 import { useTaskStore } from '@/stores/task'
-import type { Task } from '@/stores/task'
 import { useListStore } from '@/stores/list'
 import { storeToRefs } from 'pinia'
 import TaskForm from './TaskForm.vue'
@@ -11,11 +11,20 @@ import TaskDetails from './TaskDetails.vue'
 const tasksStore = useTaskStore()
 const listStore = useListStore()
 
-const { listTasks, total, completedTasks } = storeToRefs(tasksStore)
+const { tasksList } = storeToRefs(tasksStore)
 const { currentListInfo } = storeToRefs(listStore)
 const { completeTask } = tasksStore
 
 const selectedTask = ref<Task | null>(null)
+
+watch(
+  () => currentListInfo.value.id,
+  (newVal, oldVal) => {
+    if (newVal !== oldVal) {
+      resetSelectedTask()
+    }
+  },
+)
 
 const resetSelectedTask = () => {
   selectedTask.value = null
@@ -29,24 +38,19 @@ const resetSelectedTask = () => {
       <div class="taskList">
         <div class="flex flex-col gap-y-3">
           <div
-            v-for="task in listTasks"
+            v-for="task in tasksList"
             :key="task.id"
             class="flex items-center bg-dark-300 rounded-md px-4 py-2.5 cursor-pointer"
             @click.self="selectedTask = task"
           >
             <div class="cursor-pointer mr-2" @click="completeTask(task.id)">
-              <Icon v-show="!task.completed" icon="ph-circle" />
-              <Icon v-show="task.completed" icon="ph-check-circle" />
+              <Icon v-show="!task.completed" icon="ph-circle" class="w-4 h-4" />
+              <Icon v-show="task.completed" icon="ph-check-circle" class="w-4 h-4" />
             </div>
             <div :class="task.completed ? 'line-through text-white/40' : ''">
               {{ task.title }}
             </div>
           </div>
-
-          <!-- <div class="flex justify-between">
-            <div>Total: {{ total }}</div>
-            <div>Done: {{ completedTasks.length + "/" + total }}</div>
-          </div> -->
         </div>
       </div>
 
