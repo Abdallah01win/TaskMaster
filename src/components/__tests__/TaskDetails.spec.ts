@@ -24,11 +24,13 @@ describe('TaskDetails', () => {
 
   it('Renders properly', () => {
     const wrapper = mount(TaskDetails, { props: { task } })
+
     expect(wrapper).toBeTruthy()
   })
 
   it('Renders task details', () => {
     const wrapper = mount(TaskDetails, { props: { task } })
+
     expect(wrapper.text()).toContain('TestTask')
     expect(wrapper.text()).toContain(formatDate(task.createdAt).date)
   })
@@ -43,5 +45,14 @@ describe('TaskDetails', () => {
     expect(store.tasks[0].description).toBe('Test description')
   })
 
-  // updates task dueDate in store
+  it('Updates task due date', async () => {
+    const wrapper = mount(TaskDetails, { props: { task } })
+    const input = wrapper.find('input[name="due_date"]')
+    const date = new Date().toISOString().split('T')[0]
+
+    await input.setValue(date)
+
+    expect(wrapper.text()).toContain(formatDate(date).date)
+    expect(formatDate(store.tasks[0].dueDate).date).toBe(formatDate(date).date)
+  })
 })

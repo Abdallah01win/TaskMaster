@@ -78,6 +78,7 @@ const saveInfo = () => {
           <input
             v-else
             class="bg-transparent focus:outline-none text-gray-300 w-full"
+            name="due_date"
             placeholder="Due Date"
             type="text"
             onfocus="(this.type='datetime-local')"
