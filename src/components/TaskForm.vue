@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import { useTaskStore } from '@/stores/task'
 import { storeToRefs } from 'pinia'
+import { Icon } from '@iconify/vue'
 
 const props = defineProps({
   selectedList: {
@@ -18,20 +19,23 @@ const { addTask } = tasksStore
 const todoItem = ref('')
 
 const create = () => {
-  addTask({
-    id: nextId.value,
-    listId: props.selectedList,
-    title: todoItem.value,
-    completed: false,
-    createdAt: new Date().toISOString(),
-  })
+  if (todoItem.value.trim() !== '') {
+    addTask({
+      id: nextId.value,
+      listId: props.selectedList,
+      title: todoItem.value,
+      completed: false,
+      createdAt: new Date().toISOString(),
+    })
 
-  todoItem.value = ''
+    todoItem.value = ''
+  }
 }
 </script>
 <template>
   <div class="bg-dark-100 rounded-md p-5">
-    <form @submit.prevent="create">
+    <form @submit.prevent="create" class="flex items-center gap-x-4">
+      <Icon icon="ph-arrow-circle-up" class="w-5 h-5 cursor-pointer" />
       <input
         v-model="todoItem"
         type="text"

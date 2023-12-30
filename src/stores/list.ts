@@ -17,7 +17,7 @@ const defaultLists: List[] = [
   {
     id: 2,
     name: 'Important',
-    icon: 'ph-circle',
+    icon: 'ph-warning-circle',
   },
   {
     id: 3,
