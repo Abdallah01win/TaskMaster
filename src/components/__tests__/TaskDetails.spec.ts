@@ -42,6 +42,7 @@ describe('TaskDetails', () => {
     await input.setValue('test description')
     await input.trigger('keypress.enter')
 
+    expect(wrapper.text()).toContain('Test description')
     expect(store.tasks[0].description).toBe('Test description')
   })
 

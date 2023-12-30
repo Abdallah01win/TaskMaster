@@ -15,6 +15,7 @@ describe('TasksList', () => {
 
   it('renders properly', () => {
     const wrapper = mount(TasksList)
+
     expect(wrapper).toBeTruthy()
   })
 

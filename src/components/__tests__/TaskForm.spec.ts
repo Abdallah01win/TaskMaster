@@ -21,6 +21,7 @@ describe('TaskForm', () => {
 
   it('Renders properly', () => {
     const wrapper = mount(TaskForm, { props })
+
     expect(wrapper).toBeTruthy()
   })
 
