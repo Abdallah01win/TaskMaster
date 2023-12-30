@@ -40,8 +40,8 @@ const resetSelectedTask = () => {
     >
       <div class="taskList pr-3">
         <div class="flex flex-col gap-y-3">
-          <div v-show="!tasksList.length" class="text-center text-gray-400">
-            No tasks currently! Add some to get started.
+          <div v-show="!tasksList.length" class="text-center text-gray-400 mt-6">
+            No tasks in {{ currentListInfo?.name }}! Add some to get started.
           </div>
           <div
             v-for="task in tasksList"
@@ -57,7 +57,7 @@ const resetSelectedTask = () => {
                 <Icon v-show="task.completed" icon="ph-check-circle" class="w-4 h-4" />
               </span>
             </div>
-            
+
             <div :class="task.completed ? 'line-through text-white/40' : ''">
               {{ task.title }}
             </div>
