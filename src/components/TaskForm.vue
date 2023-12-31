@@ -25,6 +25,7 @@ const create = () => {
       listId: props.selectedList,
       title: todoItem.value,
       completed: false,
+      favorite: false,
       createdAt: new Date().toISOString(),
     })
 

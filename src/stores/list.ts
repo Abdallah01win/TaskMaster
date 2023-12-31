@@ -24,6 +24,16 @@ const defaultLists: List[] = [
     name: 'Favorites',
     icon: 'ph-star',
   },
+  {
+    id: 4,
+    name: 'Completed',
+    icon: 'ph-check-circle',
+  },
+  {
+    id: 5,
+    name: 'All Tasks',
+    icon: 'ph-list-checks',
+  },
 ]
 
 export const useListStore = defineStore('list', () => {

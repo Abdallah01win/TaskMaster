@@ -1,8 +1,8 @@
 import { createPinia, setActivePinia } from 'pinia'
 import { beforeAll, describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import TasksList from '@/components/TasksList.vue'
 import { useTaskStore } from '@/stores/task'
+import TasksList from '@/components/TasksList.vue'
 
 describe('TasksList', () => {
   let store: any
@@ -20,7 +20,7 @@ describe('TasksList', () => {
   })
 
   it('Renders tasks', () => {
-    store.addTask({ listId: 1, title: 'testTask' })
+    store.addTask({ listId: 1, title: 'testTask', dueDate: new Date() })
     const wrapper = mount(TasksList)
 
     expect(wrapper.text()).toContain('TestTask')

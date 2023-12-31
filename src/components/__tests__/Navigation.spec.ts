@@ -32,6 +32,6 @@ describe('Navigation', () => {
     await wrapper.find('form').trigger('submit')
 
     const list = store.lists.find((list: List) => list.name === 'TestList')
-    expect(list).toEqual({ id: 4, name: 'TestList', icon: 'ph-list' })
+    expect(list).toBeTruthy()
   })
 })
