@@ -33,10 +33,12 @@ export function filterTasks(task: Task, selectedList: number) {
   switch (selectedList) {
     case 1:
       return task?.dueDate ? isToday(task?.dueDate) : null
-    case 4:
-      return task.completed
+    case 2:
+      return task.important
     case 3:
       return task.favorite
+    case 4:
+      return task.completed
     case 5:
       return task
     default:

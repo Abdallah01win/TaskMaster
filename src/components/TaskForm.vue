@@ -26,6 +26,7 @@ const create = () => {
       title: todoItem.value,
       completed: false,
       favorite: false,
+      important: false,
       createdAt: new Date().toISOString(),
     })
 

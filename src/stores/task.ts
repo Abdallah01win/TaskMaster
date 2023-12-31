@@ -9,7 +9,8 @@ export interface Task {
   title: string
   createdAt: string
   completed: boolean
-  favorite?: boolean
+  favorite: boolean
+  important: boolean
   description?: string
   dueDate?: string
 }
@@ -22,14 +23,6 @@ export const useTaskStore = defineStore('task', () => {
 
   const tasksList = computed(() => {
     return tasks.value.filter((task) => filterTasks(task, listStore.selectedList))
-  })
-
-  const remainingTasks = computed(() => {
-    return tasksList.value.filter((task) => !task.completed)
-  })
-
-  const completedTasks = computed(() => {
-    return tasksList.value.filter((task) => task.completed)
   })
 
   const total = computed(() => tasksList.value.length)
@@ -65,6 +58,13 @@ export const useTaskStore = defineStore('task', () => {
     }
   }
 
+  function importantTask(id: number) {
+    const task = tasks.value.find((task) => task.id === id)
+    if (task) {
+      task.important = !task.important
+    }
+  }
+
   function removeTask(id: number) {
     tasks.value = tasks.value.filter((task) => task.id !== id)
   }
@@ -72,14 +72,13 @@ export const useTaskStore = defineStore('task', () => {
   return {
     tasks,
     total,
-    remainingTasks,
-    completedTasks,
     nextId,
     tasksList,
     addTask,
     setTaskInfo,
     completeTask,
     favoriteTask,
+    importantTask,
     removeTask,
   }
 })
