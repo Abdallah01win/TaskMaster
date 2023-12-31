@@ -1,14 +1,15 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import { useListStore } from './list'
-import { capitalize } from '@/helpers/index'
+import { capitalize, filterTasks } from '@/helpers/index'
 
 export interface Task {
   id: number
   listId: number
   title: string
-  completed: boolean
   createdAt: string
+  completed: boolean
+  favorite?: boolean
   description?: string
   dueDate?: string
 }
@@ -20,7 +21,7 @@ export const useTaskStore = defineStore('task', () => {
   const nextId = ref<number>(1)
 
   const tasksList = computed(() => {
-    return tasks.value.filter((task) => task.listId === listStore.selectedList)
+    return tasks.value.filter((task) => filterTasks(task, listStore.selectedList))
   })
 
   const remainingTasks = computed(() => {
@@ -57,6 +58,13 @@ export const useTaskStore = defineStore('task', () => {
     }
   }
 
+  function favoriteTask(id: number) {
+    const task = tasks.value.find((task) => task.id === id)
+    if (task) {
+      task.favorite = !task.favorite
+    }
+  }
+
   function removeTask(id: number) {
     tasks.value = tasks.value.filter((task) => task.id !== id)
   }
@@ -71,6 +79,7 @@ export const useTaskStore = defineStore('task', () => {
     addTask,
     setTaskInfo,
     completeTask,
+    favoriteTask,
     removeTask,
   }
 })

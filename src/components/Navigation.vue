@@ -1,9 +1,9 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
+import { ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import { storeToRefs } from 'pinia'
 import { useListStore } from '@/stores/list'
-import { ref } from 'vue'
 
 const listsStore = useListStore()
 const { lists, selectedList } = storeToRefs(listsStore)
@@ -18,6 +18,8 @@ const createNewList = (name: string) => {
     newListName.value = ''
   }
 }
+
+const isCurrentList = (id: number) => selectedList.value === id
 </script>
 
 <template>
@@ -30,10 +32,10 @@ const createNewList = (name: string) => {
         <li
           v-for="list in lists"
           :key="list.id"
-          class="flex items-center gap-x-2.5 py-2 px-4 border-b border-ash hover:bg-dark-200"
-          :class="selectedList === list.id ? 'bg-dark-300' : ''"
+          class="flex items-center relative gap-x-2.5 py-2 px-4 border-b border-ash hover:bg-dark-200"
           @click="setSelectedList(list.id)"
         >
+          <span v-show="isCurrentList(list.id)" class="absolute left-0 w-0.5 h-full bg-lightGreen"></span>
           <span>
             <Icon :icon="list.icon" class="w-4 h-4" />
           </span>
@@ -45,7 +47,7 @@ const createNewList = (name: string) => {
         <div class="py-3 px-4 border-t border-ash">
           <div v-show="!showInput" class="flex items-center gap-x-4 cursor-pointer" @click="showInput = true">
             <span>
-              <Icon icon="ph-plus" class="w-4 h-4" />
+              <Icon icon="ph-list-plus" class="w-5 h-5" />
             </span>
             <span>Add new list</span>
           </div>

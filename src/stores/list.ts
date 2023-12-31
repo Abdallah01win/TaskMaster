@@ -17,12 +17,22 @@ const defaultLists: List[] = [
   {
     id: 2,
     name: 'Important',
-    icon: 'ph-circle',
+    icon: 'ph-warning-circle',
   },
   {
     id: 3,
     name: 'Favorites',
     icon: 'ph-star',
+  },
+  {
+    id: 4,
+    name: 'Completed',
+    icon: 'ph-check-circle',
+  },
+  {
+    id: 5,
+    name: 'All Tasks',
+    icon: 'ph-list-checks',
   },
 ]
 

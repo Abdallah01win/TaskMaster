@@ -15,7 +15,7 @@ const props = defineProps({
 const emit = defineEmits(['close'])
 
 const taskStore = useTaskStore()
-const { setTaskInfo } = taskStore
+const { setTaskInfo, removeTask } = taskStore
 
 const minDate = new Date().toISOString().split('T')[0]
 
@@ -36,6 +36,11 @@ watch(
 
 const saveInfo = () => {
   setTaskInfo(props.task?.id, form.value)
+}
+
+const deleteTask = (id: number) => {
+  removeTask(id)
+  emit('close')
 }
 </script>
 
@@ -87,6 +92,15 @@ const saveInfo = () => {
             @change="saveInfo"
           />
         </div>
+
+        <button
+          id="delete"
+          class="grid place-content-center p-2 w-fit ml-auto mt-1.5 bg-dark-200 rounded-full hover:bg-red-500"
+          title="Delete task."
+          @click="deleteTask(task?.id)"
+        >
+          <Icon icon="ph-trash" class="cursor-pointer w-4 h-4" />
+        </button>
       </div>
     </div>
   </div>

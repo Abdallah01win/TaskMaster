@@ -4,6 +4,7 @@ import { mount } from '@vue/test-utils'
 import { useTaskStore } from '@/stores/task'
 import { formatDate } from '@/helpers/index'
 import TaskDetails from '@/components/TaskDetails.vue'
+import type { Task } from '@/stores/task'
 
 describe('TaskDetails', () => {
   let store: any
@@ -55,5 +56,15 @@ describe('TaskDetails', () => {
 
     expect(wrapper.text()).toContain(formatDate(date).date)
     expect(formatDate(store.tasks[0].dueDate).date).toBe(formatDate(date).date)
+  })
+
+  it('Deletes task', async () => {
+    const wrapper = mount(TaskDetails, { props: { task } })
+    const btn = wrapper.find('#delete')
+
+    await btn.trigger('click')
+
+    expect(store.tasks.find((t: Task) => t.id === task.id)).toBeUndefined()
+    expect(wrapper.emitted('close')).toBeTruthy()
   })
 })
