@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { useTaskStore } from '@/stores/task'
 import { storeToRefs } from 'pinia'
 import { Icon } from '@iconify/vue'
+import { initTask } from '@/helpers'
 
 const props = defineProps({
   selectedList: {
@@ -24,10 +25,7 @@ const create = () => {
       id: nextId.value,
       listId: props.selectedList,
       title: todoItem.value,
-      completed: false,
-      favorite: false,
-      important: false,
-      createdAt: new Date().toISOString(),
+      ...initTask(props.selectedList),
     })
 
     todoItem.value = ''

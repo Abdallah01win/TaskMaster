@@ -45,3 +45,15 @@ export function filterTasks(task: Task, selectedList: number) {
       return task.listId === selectedList
   }
 }
+
+export function initTask(listId: number) {
+  const currentDate = new Date().toISOString()
+
+  return {
+    dueDate: listId == 1 ? currentDate : '',
+    important: listId == 2,
+    favorite: listId == 3,
+    completed: listId == 4,
+    createdAt: currentDate,
+  }
+}
