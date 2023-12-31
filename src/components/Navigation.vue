@@ -26,13 +26,13 @@ const isCurrentList = (id: number) => selectedList.value === id
   <nav class="px-4 flex items-center justify-between py-2 bg-dark-100 h-[var(--nav-height)]">
     <div>TodoApp</div>
   </nav>
-  <section class="flex h-[var(--main-height)] w-full border-t border-ash">
+  <section class="flex h-[var(--main-height)] w-full border-t border-ash-100">
     <aside class="bg-dark-100 w-60 flex flex-col">
       <ul class="text-sm">
         <li
           v-for="list in lists"
           :key="list.id"
-          class="flex items-center relative gap-x-2.5 py-2 px-4 border-b border-ash hover:bg-dark-200"
+          class="flex items-center relative gap-x-2.5 py-2 px-4 border-b border-ash-100 hover:bg-dark-200"
           @click="setSelectedList(list.id)"
         >
           <span v-show="isCurrentList(list.id)" class="absolute left-0 w-0.5 h-full bg-lightGreen"></span>
@@ -44,7 +44,7 @@ const isCurrentList = (id: number) => selectedList.value === id
       </ul>
 
       <div class="mt-auto">
-        <div class="py-3 px-4 border-t border-ash">
+        <div class="py-3 px-4 border-t border-ash-100">
           <div v-show="!showInput" class="flex items-center gap-x-4 cursor-pointer" @click="showInput = true">
             <span>
               <Icon icon="ph-list-plus" class="w-5 h-5" />

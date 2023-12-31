@@ -35,10 +35,10 @@ const resetSelectedTask = () => {
   <div class="flex flex-col h-full">
     <div class="text-3xl mb-4 font-semibold">{{ currentListInfo?.name }}</div>
     <div
-      class="grid overflow-y-auto mb-4 scrollbar-thin scrollbar-thumb-rounded-lg scrollbar-track-rounded-lg scrollbar-thumb-dark-100/60 scrollbar-track-dark-300"
+      class="grid overflow-y-auto mb-4 scrollbar-thin scrollbar-thumb-rounded-lg scrollbar-track-rounded-lg scrollbar-thumb-ash-200 scrollbar-track-dark-300 pr-3"
       :class="selectedTask ? 'grid-cols-[1fr_.6fr] gap-x-3' : 'grid-cols-1 gap-x-0'"
     >
-      <div class="taskList pr-3">
+      <div class="taskList">
         <div class="flex flex-col gap-y-3">
           <div v-show="!tasksList.length" class="text-center text-gray-400 mt-6">
             No tasks in {{ currentListInfo?.name }}! Add some to get started.
