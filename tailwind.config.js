@@ -16,7 +16,7 @@ module.exports = {
         light: {
           100: '#FDFDFF',
         },
-        ash: '#1b1b1b',
+        ash: { 100: '#1b1b1b', 200: '#646464' },
         lightBlue: '#0628e0',
         lightGreen: '#73F440',
       },
