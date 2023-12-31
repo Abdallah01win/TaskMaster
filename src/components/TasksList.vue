@@ -13,7 +13,7 @@ const listStore = useListStore()
 
 const { tasksList } = storeToRefs(tasksStore)
 const { currentListInfo } = storeToRefs(listStore)
-const { completeTask, favoriteTask } = tasksStore
+const { completeTask, favoriteTask, importantTask } = tasksStore
 
 const selectedTask = ref<Task | null>(null)
 
@@ -60,12 +60,18 @@ const resetSelectedTask = () => {
                 {{ task?.title }}
               </div>
             </div>
-            <div>
+            <div class="flex items-center gap-x-3">
+              <span
+                @click="importantTask(task?.id)"
+                :title="task?.important ? 'Remove from important' : 'Important'"
+              >
+                <Icon :icon="task?.important ? 'ph-tag-chevron-fill' : 'ph-tag-chevron'" class="w-5 h-5" />
+              </span>
               <span
                 @click="favoriteTask(task?.id)"
                 :title="task?.favorite ? 'Remove from favorites' : 'Add to favorites'"
               >
-                <Icon :icon="task?.favorite ? 'ph-star-fill' : 'ph-star'" class="w-4 h-4" />
+                <Icon :icon="task?.favorite ? 'ph-star-fill' : 'ph-star'" class="w-5 h-5" />
               </span>
             </div>
           </div>
