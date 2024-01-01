@@ -3,7 +3,7 @@ import { describe, it, expect, beforeAll } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { useListStore } from '@/stores/list'
 import type { List } from '@/stores/list'
-import Navigation from '@/components/Navigation.vue'
+import Navigation from '@/components/Navigation/Index.vue'
 
 describe('Navigation', () => {
   let store: any
