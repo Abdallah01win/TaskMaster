@@ -5,6 +5,7 @@ import { Icon } from '@iconify/vue'
 import { useTaskStore } from '@/stores/task'
 import { useListStore } from '@/stores/list'
 import { storeToRefs } from 'pinia'
+import DropDown from '@/components/DropDown.vue'
 import TaskForm from './TaskForm.vue'
 import TaskDetails from './TaskDetails.vue'
 
@@ -13,6 +14,7 @@ const listStore = useListStore()
 
 const { tasksList } = storeToRefs(tasksStore)
 const { currentListInfo } = storeToRefs(listStore)
+const { deleteList } = listStore
 const { completeTask, favoriteTask, importantTask } = tasksStore
 
 const selectedTask = ref<Task | null>(null)
@@ -33,7 +35,26 @@ const resetSelectedTask = () => {
 
 <template>
   <div class="flex flex-col h-full">
-    <div class="text-3xl mb-4 font-semibold">{{ currentListInfo?.name }}</div>
+    <div class="flex items-center justify-between mb-4">
+      <div class="text-3xl font-semibold">{{ currentListInfo?.name }}</div>
+      <span v-if="currentListInfo?.id > 5">
+        <DropDown>
+          <template #trigger>
+            <Icon icon="ph-dots-three-outline-vertical-fill" class="w-5 h-5 cursor-pointer" />
+          </template>
+
+          <template #options>
+            <span class="block px-4 py-2 text-sm text-dark-100 hover:bg-gray-100 cursor-pointer">Rename</span>
+            <span
+              class="block px-4 py-2 text-sm text-dark-100 hover:bg-gray-100 cursor-pointer"
+              @click="deleteList(currentListInfo?.id)"
+            >
+              Delete
+            </span>
+          </template>
+        </DropDown>
+      </span>
+    </div>
     <div
       class="grid overflow-y-auto mb-4 scrollbar-thin scrollbar-thumb-rounded-lg scrollbar-track-rounded-lg scrollbar-thumb-ash-200 scrollbar-track-dark-300 pr-3"
       :class="selectedTask ? 'grid-cols-[1fr_.6fr] gap-x-3' : 'grid-cols-1 gap-x-0'"
