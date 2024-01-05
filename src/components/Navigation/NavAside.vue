@@ -31,7 +31,7 @@ const isCurrentList = (id: number) => selectedList.value === id
       <li
         v-for="list in lists"
         :key="list.id"
-        class="flex items-center relative gap-x-2.5 py-2 px-4 border-b border-ash-100 hover:bg-dark-200"
+        class="flex items-center relative gap-x-2.5 py-2 px-4 border-b border-ash-100 hover:bg-dark-200 cursor-pointer"
         @click="setSelectedList(list.id)"
       >
         <span v-show="isCurrentList(list.id)" class="absolute left-0 w-0.5 h-full bg-lightGreen"></span>

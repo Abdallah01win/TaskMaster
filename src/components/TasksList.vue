@@ -46,11 +46,8 @@ const resetSelectedTask = () => {
           </template>
 
           <template #options>
-            <span class="block px-4 py-2 text-sm text-dark-100 hover:bg-gray-100 cursor-pointer">Rename</span>
-            <span
-              class="block px-4 py-2 text-sm text-dark-100 hover:bg-gray-100 cursor-pointer"
-              @click="openDialog = true"
-            >
+            <span class="block px-4 py-2.5 hover:bg-dark-300 cursor-pointer">Rename</span>
+            <span class="block px-4 py-2.5 hover:bg-dark-300 cursor-pointer" @click="openDialog = true">
               Delete
             </span>
           </template>
@@ -107,9 +104,14 @@ const resetSelectedTask = () => {
   </div>
 
   <Teleport to="body">
-    <Dialog msg="Are you sure you want to delete this list?" v-if="currentListInfo?.id > 5 && openDialog">
+    <Dialog
+      v-if="currentListInfo?.id > 5 && openDialog"
+      title="Are you sure you want to delete this list?"
+      msg="This action cannot be undone and will also delete all tasks withing this list!"
+      @cancel="openDialog = false"
+    >
       <template #action>
-        <button @click="deleteList(currentListInfo?.id)">confirm</button>
+        <button class="bg-red-500 px-4 py-2 rounded" @click="deleteList(currentListInfo?.id)">Delete</button>
       </template>
     </Dialog>
   </Teleport>
