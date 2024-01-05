@@ -25,4 +25,10 @@ describe('TasksList', () => {
 
     expect(wrapper.text()).toContain('TestTask')
   })
+
+  // add list to store
+  // add task to list
+  // delete list
+  // check tasks are deleted
+  // check list is deleted
 })

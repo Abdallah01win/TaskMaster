@@ -6,6 +6,7 @@ import { useTaskStore } from '@/stores/task'
 import { useListStore } from '@/stores/list'
 import { storeToRefs } from 'pinia'
 import DropDown from '@/components/DropDown.vue'
+import Dialog from '@/components/Dialog.vue'
 import TaskForm from './TaskForm.vue'
 import TaskDetails from './TaskDetails.vue'
 
@@ -18,6 +19,7 @@ const { deleteList } = listStore
 const { completeTask, favoriteTask, importantTask } = tasksStore
 
 const selectedTask = ref<Task | null>(null)
+const openDialog = ref(false)
 
 watch(
   () => currentListInfo.value.id,
@@ -34,7 +36,7 @@ const resetSelectedTask = () => {
 </script>
 
 <template>
-  <div class="flex flex-col h-full">
+  <div class="flex flex-col h-full relative">
     <div class="flex items-center justify-between mb-4">
       <div class="text-3xl font-semibold">{{ currentListInfo?.name }}</div>
       <span v-if="currentListInfo?.id > 5">
@@ -47,7 +49,7 @@ const resetSelectedTask = () => {
             <span class="block px-4 py-2 text-sm text-dark-100 hover:bg-gray-100 cursor-pointer">Rename</span>
             <span
               class="block px-4 py-2 text-sm text-dark-100 hover:bg-gray-100 cursor-pointer"
-              @click="deleteList(currentListInfo?.id)"
+              @click="openDialog = true"
             >
               Delete
             </span>
@@ -103,4 +105,12 @@ const resetSelectedTask = () => {
     </div>
     <TaskForm class="mt-auto" :selected-list="currentListInfo?.id" />
   </div>
+
+  <Teleport to="body">
+    <Dialog msg="Are you sure you want to delete this list?" v-if="currentListInfo?.id > 5 && openDialog">
+      <template #action>
+        <button @click="deleteList(currentListInfo?.id)">confirm</button>
+      </template>
+    </Dialog>
+  </Teleport>
 </template>
