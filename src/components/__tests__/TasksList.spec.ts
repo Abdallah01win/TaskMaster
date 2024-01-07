@@ -42,11 +42,7 @@ describe('TasksList', () => {
     const task = store.tasks.find(({ title }: Task) => title === 'TestTask')
     expect(task).toBeTruthy()
 
-    console.log(store.tasks);
     listStore.deleteList(list.id)
-    console.log(store.tasks);
-    
-
     const deletedList = listStore.lists.find(({ id }: List) => id === list.id)
     const deletedTask = store.tasks.find(({ listId }: Task) => listId === list.id)
     expect(deletedList).toBeUndefined()
