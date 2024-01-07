@@ -39,7 +39,6 @@ const defaultLists: List[] = [
 
 export const useListStore = defineStore('list', () => {
   const taskStore = useTaskStore()
-  const { removeListTasks } = taskStore
 
   const lists = ref<List[]>([...defaultLists])
   const selectedList = ref<number>(defaultLists[0].id)
@@ -68,6 +67,8 @@ export const useListStore = defineStore('list', () => {
 
   function deleteList(id: number) {
     if (!defaultLists.map(({ id }) => id).includes(id)) {
+      const { removeListTasks } = taskStore
+      
       removeListTasks(id)
       lists.value = lists.value.filter((list) => list.id !== id)
       selectedList.value = defaultLists[0].id

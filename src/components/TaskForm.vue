@@ -36,7 +36,7 @@ const create = () => {
 <template>
   <div class="bg-dark-100 rounded-md px-5 py-4">
     <form @submit.prevent="create" class="flex items-center gap-x-4">
-      <Icon icon="ph-circle" class="w-5 h-5 cursor-pointer" />
+      <Icon icon="ph-circle" class="w-5 h-5" />
       <input
         v-model="todoItem"
         type="text"
