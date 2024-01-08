@@ -2,6 +2,12 @@
 import { ref } from 'vue'
 
 const showListActions = ref(false)
+
+const hideOptions = () => {
+  showListActions.value = false
+}
+
+defineExpose({ hideOptions })
 </script>
 <template>
   <div class="relative inline-block text-left text-light-100">

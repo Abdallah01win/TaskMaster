@@ -48,4 +48,16 @@ describe('TasksList', () => {
     expect(deletedList).toBeUndefined()
     expect(deletedTask).toBeUndefined()
   })
+
+  it('Renames user lists', ()=>{
+    const wrapper = mount(TasksList)
+
+    //on rename click:
+      // close dropdpwn
+      // focuse input
+    // on enter click:
+      // save new name
+      // hide input
+
+  })
 })

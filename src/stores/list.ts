@@ -65,15 +65,24 @@ export const useListStore = defineStore('list', () => {
     })
   }
 
+  function renameList(id: number, name: string) {
+    console.log(name)
+
+    const list = lists.value.find((list) => list.id === id)
+    if (list) {
+      list.name = capitalize(name)
+    }
+  }
+
   function deleteList(id: number) {
     if (!defaultLists.map(({ id }) => id).includes(id)) {
       const { removeListTasks } = taskStore
-      
+
       removeListTasks(id)
       lists.value = lists.value.filter((list) => list.id !== id)
       selectedList.value = defaultLists[0].id
     }
   }
 
-  return { lists, selectedList, currentListInfo, setSelectedList, createList, deleteList }
+  return { lists, selectedList, currentListInfo, setSelectedList, createList, renameList, deleteList }
 })

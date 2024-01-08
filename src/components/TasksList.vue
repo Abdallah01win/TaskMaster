@@ -10,21 +10,32 @@ import Dialog from '@/components/Dialog.vue'
 import TaskForm from './TaskForm.vue'
 import TaskDetails from './TaskDetails.vue'
 
+type Form = {
+  id: number | null
+  name: string | null
+}
+
 const tasksStore = useTaskStore()
 const listStore = useListStore()
 
 const { tasksList } = storeToRefs(tasksStore)
 const { currentListInfo } = storeToRefs(listStore)
-const { deleteList } = listStore
+const { deleteList, renameList } = listStore
 const { completeTask, favoriteTask, importantTask } = tasksStore
 
-const selectedTask = ref<Task | null>(null)
+const dropDown = ref(null)
 const openDialog = ref(false)
+const editListName = ref(false)
+const selectedTask = ref<Task | null>(null)
+const form = ref<Form>({ id: null, name: null })
 
 watch(
   () => currentListInfo.value.id,
   (newVal, oldVal) => {
     if (newVal !== oldVal) {
+      form.value = { id: newVal, name: currentListInfo.value.name }
+      editListName.value = false
+      dropDown.value?.hideOptions()
       resetSelectedTask()
     }
   },
@@ -38,15 +49,26 @@ const resetSelectedTask = () => {
 <template>
   <div class="flex flex-col h-full relative">
     <div class="flex items-center justify-between mb-4">
-      <div class="text-3xl font-semibold">{{ currentListInfo?.name }}</div>
+      <div>
+        <div v-if="!editListName" class="text-3xl font-semibold">{{ currentListInfo?.name }}</div>
+        <input
+          v-if="editListName && currentListInfo?.id > 5"
+          v-model="form.name"
+          type="text"
+          class="bg-transparent text-3xl font-semibold"
+          @keypress.enter="renameList(form?.id, form?.name)"
+        />
+      </div>
       <span v-if="currentListInfo?.id > 5">
-        <DropDown>
+        <DropDown ref="dropDown">
           <template #trigger>
             <Icon icon="ph-dots-three-outline-vertical-fill" class="w-5 h-5 cursor-pointer" />
           </template>
 
           <template #options>
-            <span class="block px-4 py-2.5 hover:bg-dark-300 cursor-pointer">Rename</span>
+            <span class="block px-4 py-2.5 hover:bg-dark-300 cursor-pointer" @click="editListName = true">
+              Rename
+            </span>
             <span class="block px-4 py-2.5 hover:bg-dark-300 cursor-pointer" @click="openDialog = true">
               Delete
             </span>
