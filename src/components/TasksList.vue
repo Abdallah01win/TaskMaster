@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Task } from '@/stores/task'
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 import { Icon } from '@iconify/vue'
 import { useTaskStore } from '@/stores/task'
 import { useListStore } from '@/stores/list'
@@ -10,11 +10,6 @@ import Dialog from '@/components/Dialog.vue'
 import TaskForm from './TaskForm.vue'
 import TaskDetails from './TaskDetails.vue'
 
-type Form = {
-  id: number | null
-  name: string | null
-}
-
 const tasksStore = useTaskStore()
 const listStore = useListStore()
 
@@ -23,26 +18,41 @@ const { currentListInfo } = storeToRefs(listStore)
 const { deleteList, renameList } = listStore
 const { completeTask, favoriteTask, importantTask } = tasksStore
 
-const dropDown = ref(null)
-const openDialog = ref(false)
-const editListName = ref(false)
+const dropDown = ref<InstanceType<typeof DropDown> | null>(null)
+const form = ref<Partial<Task>>({ id: currentListInfo.value.id, title: currentListInfo.value.name })
 const selectedTask = ref<Task | null>(null)
-const form = ref<Form>({ id: null, name: null })
+const openDialog = ref(false)
+const isRenameModeActive = ref(false)
 
 watch(
   () => currentListInfo.value.id,
   (newVal, oldVal) => {
     if (newVal !== oldVal) {
-      form.value = { id: newVal, name: currentListInfo.value.name }
-      editListName.value = false
-      dropDown.value?.hideOptions()
+      form.value = { id: newVal, title: currentListInfo.value.name }
+      toggleRenameMode(false)
       resetSelectedTask()
     }
   },
 )
 
+const shouldShowTitleInput = computed(() => {
+  return currentListInfo.value.id > 5 && isRenameModeActive.value
+})
+
 const resetSelectedTask = () => {
   selectedTask.value = null
+}
+
+const toggleRenameMode = (edit: boolean) => {
+  isRenameModeActive.value = edit
+  dropDown.value?.hideOptions()
+}
+
+const saveListTitle = () => {
+  const { id, title } = form.value
+  if (id && title) {
+    renameList(id, title)
+  }
 }
 </script>
 
@@ -50,13 +60,13 @@ const resetSelectedTask = () => {
   <div class="flex flex-col h-full relative">
     <div class="flex items-center justify-between mb-4">
       <div>
-        <div v-if="!editListName" class="text-3xl font-semibold">{{ currentListInfo?.name }}</div>
+        <div v-if="!shouldShowTitleInput" class="text-3xl font-semibold">{{ currentListInfo?.name }}</div>
         <input
-          v-if="editListName && currentListInfo?.id > 5"
-          v-model="form.name"
+          v-else="shouldShowTitleInput"
+          v-model="form.title"
           type="text"
           class="bg-transparent text-3xl font-semibold"
-          @keypress.enter="renameList(form?.id, form?.name)"
+          @keypress.enter="saveListTitle"
         />
       </div>
       <span v-if="currentListInfo?.id > 5">
@@ -66,7 +76,7 @@ const resetSelectedTask = () => {
           </template>
 
           <template #options>
-            <span class="block px-4 py-2.5 hover:bg-dark-300 cursor-pointer" @click="editListName = true">
+            <span class="block px-4 py-2.5 hover:bg-dark-300 cursor-pointer" @click="toggleRenameMode(true)">
               Rename
             </span>
             <span class="block px-4 py-2.5 hover:bg-dark-300 cursor-pointer" @click="openDialog = true">
