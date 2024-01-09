@@ -19,7 +19,7 @@ const { deleteList, renameList } = listStore
 const { completeTask, favoriteTask, importantTask } = tasksStore
 
 const dropDown = ref<InstanceType<typeof DropDown> | null>(null)
-const form = ref<Partial<Task>>({ id: currentListInfo.value.id, title: currentListInfo.value.name })
+const form = ref<Partial<Task>>({ id: 0, title: '' })
 const selectedTask = ref<Task | null>(null)
 const openDialog = ref(false)
 const isRenameModeActive = ref(false)
@@ -52,6 +52,7 @@ const saveListTitle = () => {
   const { id, title } = form.value
   if (id && title) {
     renameList(id, title)
+    toggleRenameMode(false)
   }
 }
 </script>
