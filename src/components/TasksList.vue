@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Task } from '@/stores/task'
-import { ref, watch, computed } from 'vue'
+import { ref, watch, computed, nextTick } from 'vue'
 import { Icon } from '@iconify/vue'
 import { useTaskStore } from '@/stores/task'
 import { useListStore } from '@/stores/list'
@@ -19,6 +19,7 @@ const { deleteList, renameList } = listStore
 const { completeTask, favoriteTask, importantTask } = tasksStore
 
 const dropDown = ref<InstanceType<typeof DropDown> | null>(null)
+const titleInput = ref<HTMLElement | null>(null)
 const form = ref<Partial<Task>>({ id: 0, title: '' })
 const selectedTask = ref<Task | null>(null)
 const openDialog = ref(false)
@@ -46,6 +47,11 @@ const resetSelectedTask = () => {
 const toggleRenameMode = (edit: boolean) => {
   isRenameModeActive.value = edit
   dropDown.value?.hideOptions()
+  if (edit) {
+    nextTick(() => {
+      titleInput.value?.focus()
+    })
+  }
 }
 
 const saveListTitle = () => {
@@ -62,13 +68,20 @@ const saveListTitle = () => {
     <div class="flex items-center justify-between mb-4">
       <div>
         <div v-if="!shouldShowTitleInput" class="text-3xl font-semibold">{{ currentListInfo?.name }}</div>
-        <input
-          v-else="shouldShowTitleInput"
-          v-model="form.title"
-          type="text"
-          class="bg-transparent text-3xl font-semibold"
-          @keypress.enter="saveListTitle"
-        />
+        <form v-else="shouldShowTitleInput" class="relative">
+          <input
+            ref="titleInput"
+            v-model="form.title"
+            type="text"
+            class="bg-dark-100 rounded-t-md px-4 py-2 text-xl font-semibold outline-none focus:ring-0"
+            @keypress.enter="saveListTitle"
+          />
+          <div class="flex items-center gap-x-2 absolute right-0 top-[50%] translate-y-[-50%] mr-4">
+            <div @click="toggleRenameMode(false)">
+              <Icon icon="ph-x-bold" class="w-4 h-4 cursor-pointer" />
+            </div>
+          </div>
+        </form>
       </div>
       <span v-if="currentListInfo?.id > 5">
         <DropDown ref="dropDown">
