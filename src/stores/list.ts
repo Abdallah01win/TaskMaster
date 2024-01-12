@@ -66,8 +66,6 @@ export const useListStore = defineStore('list', () => {
   }
 
   function renameList(id: number, name: string) {
-    console.log(name)
-
     const list = lists.value.find((list) => list.id === id)
     if (list) {
       list.name = capitalize(name)
