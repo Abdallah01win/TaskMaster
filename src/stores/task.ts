@@ -69,6 +69,10 @@ export const useTaskStore = defineStore('task', () => {
     tasks.value = tasks.value.filter((task) => task.id !== id)
   }
 
+  function removeListTasks(id: number) {
+    tasks.value = tasks.value.filter((task) => task.listId !== id)
+  }
+
   return {
     tasks,
     total,
@@ -80,5 +84,6 @@ export const useTaskStore = defineStore('task', () => {
     favoriteTask,
     importantTask,
     removeTask,
+    removeListTasks,
   }
 })
