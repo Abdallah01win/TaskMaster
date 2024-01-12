@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, nextTick } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useListStore } from '@/stores/list'
 import { Icon } from '@iconify/vue'
@@ -8,12 +8,19 @@ const listsStore = useListStore()
 const { lists, selectedList } = storeToRefs(listsStore)
 const { setSelectedList, createList } = listsStore
 
+const listInput = ref<HTMLElement | null>(null)
 const showInput = ref(false)
-const listInput = ref(null)
 const newListName = ref('')
 
 const ToggleInputDisplay = () => {
   showInput.value = !showInput.value
+  if (!showInput.value) {
+    newListName.value = ''
+  } else {
+    nextTick(() => {
+      listInput.value?.focus()
+    })
+  }
 }
 
 const createNewList = (name: string) => {
