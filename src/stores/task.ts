@@ -84,6 +84,6 @@ export const useTaskStore = defineStore('task', () => {
     favoriteTask,
     importantTask,
     removeTask,
-    removeListTasks
+    removeListTasks,
   }
 })
