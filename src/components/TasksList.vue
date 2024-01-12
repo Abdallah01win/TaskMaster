@@ -68,13 +68,12 @@ const saveListTitle = () => {
     <div class="flex items-center justify-between mb-4">
       <div>
         <div v-if="!shouldShowTitleInput" class="text-3xl font-semibold">{{ currentListInfo?.name }}</div>
-        <form v-else="shouldShowTitleInput" class="relative">
+        <form v-else="shouldShowTitleInput" class="relative" @submit.prevent="saveListTitle">
           <input
             ref="titleInput"
             v-model="form.title"
             type="text"
             class="bg-dark-100 rounded-t-md px-4 py-2 text-xl font-semibold outline-none focus:ring-0"
-            @keypress.enter="saveListTitle"
           />
           <div class="flex items-center gap-x-2 absolute right-0 top-[50%] translate-y-[-50%] mr-4">
             <div @click="toggleRenameMode(false)">
