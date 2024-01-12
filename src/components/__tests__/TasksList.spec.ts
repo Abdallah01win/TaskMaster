@@ -49,15 +49,14 @@ describe('TasksList', () => {
     expect(deletedTask).toBeUndefined()
   })
 
-  it('Renames user lists', ()=>{
-    const wrapper = mount(TasksList)
+  it('Renames user lists', () => {
+    listStore = useListStore()
+    listStore.createList('testList')
+    const list = listStore.lists.find(({ name }: List) => name === 'TestList')
 
-    //on rename click:
-      // close dropdpwn
-      // focuse input
-    // on enter click:
-      // save new name
-      // hide input
+    listStore.renameList(list.id, 'testList2')
+    const renamedList = listStore.lists.find(({ id }: List) => id === list.id)
 
+    expect(renamedList.name).toBe('TestList2')
   })
 })
