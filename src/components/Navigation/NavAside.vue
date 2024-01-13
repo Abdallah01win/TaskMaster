@@ -52,9 +52,7 @@ const isCurrentList = (id: number) => selectedList.value === id
     <div class="mt-auto">
       <div class="py-3 px-4 border-t border-ash-100">
         <div class="flex items-center gap-x-3">
-          <div @click="ToggleInputDisplay" class="cursor-pointer">
-            <Icon :icon="showInput ? 'x' : 'list-plus'" />
-          </div>
+          <Icon :icon="showInput ? 'x' : 'list-plus'" @click="ToggleInputDisplay" />
           <form v-show="showInput" @submit.prevent="createNewList(newListName)" class="shrink">
             <input
               ref="listInput"
