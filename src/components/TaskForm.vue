@@ -2,8 +2,8 @@
 import { ref } from 'vue'
 import { useTaskStore } from '@/stores/task'
 import { storeToRefs } from 'pinia'
-import { Icon } from '@iconify/vue'
 import { initTask } from '@/helpers'
+import Icon from '@/components/Icon.vue'
 
 const props = defineProps({
   selectedList: {
@@ -36,7 +36,7 @@ const create = () => {
 <template>
   <div class="bg-dark-100 rounded-md px-5 py-4">
     <form @submit.prevent="create" class="flex items-center gap-x-4">
-      <Icon icon="ph-circle" class="w-5 h-5" />
+      <Icon :icon="'circle'" :isClickable="false" />
       <input
         v-model="todoItem"
         type="text"
@@ -51,7 +51,7 @@ const create = () => {
         @click="create"
       >
         <span>Add</span>
-        <Icon icon="ph-arrow-up-bold" class="w-4 h-4 cursor-pointer" />
+        <Icon :icon="'arrow-up-bold'" :width="4" />
       </button>
     </form>
   </div>
