@@ -14,7 +14,7 @@ const tasksStore = useTaskStore()
 const listStore = useListStore()
 
 const { tasksList } = storeToRefs(tasksStore)
-const { currentListInfo } = storeToRefs(listStore)
+const { currentList } = storeToRefs(listStore)
 const { deleteList, renameList } = listStore
 const { completeTask, favoriteTask, importantTask } = tasksStore
 
@@ -26,10 +26,10 @@ const openDialog = ref(false)
 const isRenameModeActive = ref(false)
 
 watch(
-  () => currentListInfo.value.id,
+  () => currentList.value.id,
   (newVal, oldVal) => {
     if (newVal !== oldVal) {
-      form.value = { id: newVal, title: currentListInfo.value.name }
+      form.value = { id: newVal, title: currentList.value.name }
       toggleRenameMode(false)
       resetSelectedTask()
     }
@@ -37,7 +37,7 @@ watch(
 )
 
 const shouldShowTitleInput = computed(() => {
-  return currentListInfo.value.id > 5 && isRenameModeActive.value
+  return currentList.value.id > 5 && isRenameModeActive.value
 })
 
 const resetSelectedTask = () => {
@@ -61,13 +61,18 @@ const saveListTitle = () => {
     toggleRenameMode(false)
   }
 }
+
+const deleteListHandler = () => {
+  deleteList(currentList.value.id)
+  openDialog.value = false
+}
 </script>
 
 <template>
   <div class="flex flex-col h-full relative">
     <div class="flex items-center justify-between mb-4">
       <div>
-        <div v-if="!shouldShowTitleInput" class="text-3xl font-semibold">{{ currentListInfo?.name }}</div>
+        <div v-if="!shouldShowTitleInput" class="text-3xl font-semibold">{{ currentList?.name }}</div>
         <form v-else="shouldShowTitleInput" class="relative" @submit.prevent="saveListTitle">
           <input
             ref="titleInput"
@@ -82,7 +87,7 @@ const saveListTitle = () => {
           </div>
         </form>
       </div>
-      <span v-if="currentListInfo?.id > 5">
+      <span v-if="currentList?.id > 5">
         <DropDown ref="dropDown">
           <template #trigger>
             <Icon :icon="'dots-three-outline-vertical-fill'" />
@@ -106,7 +111,7 @@ const saveListTitle = () => {
       <div class="taskList">
         <div class="flex flex-col gap-y-3">
           <div v-show="!tasksList.length" class="text-center text-gray-400 mt-6">
-            No tasks in {{ currentListInfo?.name }}! Add some to get started.
+            No tasks in {{ currentList?.name }}! Add some to get started.
           </div>
           <div
             v-for="task in tasksList"
@@ -145,18 +150,18 @@ const saveListTitle = () => {
 
       <TaskDetails v-show="selectedTask" :task="selectedTask ?? {}" @close="resetSelectedTask" />
     </div>
-    <TaskForm class="mt-auto" :selected-list="currentListInfo?.id" />
+    <TaskForm class="mt-auto" :selected-list="currentList?.id" />
   </div>
 
   <Teleport to="body">
     <Dialog
-      v-if="currentListInfo?.id > 5 && openDialog"
+      v-if="currentList?.id > 5 && openDialog"
       title="Are you sure you want to delete this list?"
       msg="This action cannot be undone and will also delete all tasks withing this list!"
       @cancel="openDialog = false"
     >
       <template #action>
-        <button class="bg-red-500 px-4 py-2 rounded" @click="deleteList(currentListInfo?.id)">Delete</button>
+        <button class="bg-red-500 px-4 py-2 rounded" @click="deleteListHandler">Delete</button>
       </template>
     </Dialog>
   </Teleport>
