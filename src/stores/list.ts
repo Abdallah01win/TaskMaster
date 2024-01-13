@@ -47,7 +47,7 @@ export const useListStore = defineStore('list', () => {
     return lists.value.find(({ id }) => id === selectedList.value) || lists.value[0]
   })
 
-  const currentListInfo = ref(getSelectedList)
+  const currentList = ref(getSelectedList)
 
   const nextId = computed(() => {
     return lists.value[lists.value.length - 1].id + 1
@@ -82,5 +82,5 @@ export const useListStore = defineStore('list', () => {
     }
   }
 
-  return { lists, selectedList, currentListInfo, setSelectedList, createList, renameList, deleteList }
+  return { lists, selectedList, currentList, setSelectedList, createList, renameList, deleteList }
 })
