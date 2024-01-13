@@ -13,27 +13,27 @@ const defaultLists: List[] = [
   {
     id: 1,
     name: 'My Day',
-    icon: 'ph-sun',
+    icon: 'sun',
   },
   {
     id: 2,
     name: 'Important',
-    icon: 'ph-warning-circle',
+    icon: 'warning-circle',
   },
   {
     id: 3,
     name: 'Favorites',
-    icon: 'ph-star',
+    icon: 'star',
   },
   {
     id: 4,
     name: 'Completed',
-    icon: 'ph-check-circle',
+    icon: 'check-circle',
   },
   {
     id: 5,
     name: 'All Tasks',
-    icon: 'ph-list-checks',
+    icon: 'list-checks',
   },
 ]
 
@@ -61,7 +61,7 @@ export const useListStore = defineStore('list', () => {
     lists.value.push({
       id: nextId.value,
       name: capitalize(name),
-      icon: 'ph-list',
+      icon: 'list',
     })
   }
 

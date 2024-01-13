@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue'
+import Icon from '@/components/Icon.vue'
 
 defineProps({
   title: {
@@ -24,7 +24,7 @@ const emit = defineEmits(['cancel'])
       <div class="mb-8">
         <div class="w-full flex items-center justify-between gap-x-6 mb-3">
           <div class="text-base">{{ title }}</div>
-          <Icon icon="ph-x" class="cursor-pointer w-5 h-5" @click="emit('cancel')" />
+          <Icon :icon="'x'" @click="emit('cancel')" />
         </div>
 
         <p class="text-ash-200">

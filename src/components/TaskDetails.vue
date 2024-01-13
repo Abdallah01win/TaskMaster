@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import { Icon } from '@iconify/vue'
 import { formatDate } from '@/helpers/index'
 import { useTaskStore } from '@/stores/task'
+import Icon from '@/components/Icon.vue'
 
 const props = defineProps({
   task: {
@@ -48,7 +48,7 @@ const deleteTask = (id: number) => {
   <div>
     <div class="bg-dark-300 rounded-md px-4 py-4">
       <div class="flex justify-end pb-4">
-        <Icon icon="ph-x" class="cursor-pointer w-5 h-5" @click="emit('close')"></Icon>
+        <Icon :icon="'x'" @click="emit('close')" />
       </div>
 
       <div class="flex flex-col gap-y-2.5">
@@ -99,7 +99,7 @@ const deleteTask = (id: number) => {
           title="Delete task."
           @click="deleteTask(task?.id)"
         >
-          <Icon icon="ph-trash" class="cursor-pointer w-4 h-4" />
+          <Icon :icon="'trash'" :width="4" />
         </button>
       </div>
     </div>

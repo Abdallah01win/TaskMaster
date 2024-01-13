@@ -2,7 +2,7 @@
 import { ref, nextTick } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useListStore } from '@/stores/list'
-import { Icon } from '@iconify/vue'
+import Icon from '@/components/Icon.vue'
 
 const listsStore = useListStore()
 const { lists, selectedList } = storeToRefs(listsStore)
@@ -43,7 +43,7 @@ const isCurrentList = (id: number) => selectedList.value === id
       >
         <span v-show="isCurrentList(list.id)" class="absolute left-0 w-0.5 h-full bg-lightGreen"></span>
         <span>
-          <Icon :icon="list.icon" class="w-4 h-4" />
+          <Icon :icon="list.icon" :width="4" />
         </span>
         <span>{{ list.name }}</span>
       </li>
@@ -53,7 +53,7 @@ const isCurrentList = (id: number) => selectedList.value === id
       <div class="py-3 px-4 border-t border-ash-100">
         <div class="flex items-center gap-x-3">
           <div @click="ToggleInputDisplay" class="cursor-pointer">
-            <Icon :icon="showInput ? 'ph-x' : 'ph-list-plus'" class="w-5 h-5" />
+            <Icon :icon="showInput ? 'x' : 'list-plus'" />
           </div>
           <form v-show="showInput" @submit.prevent="createNewList(newListName)" class="shrink">
             <input

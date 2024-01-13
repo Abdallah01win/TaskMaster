@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type { Task } from '@/stores/task'
 import { ref, watch, computed, nextTick } from 'vue'
-import { Icon } from '@iconify/vue'
 import { useTaskStore } from '@/stores/task'
 import { useListStore } from '@/stores/list'
 import { storeToRefs } from 'pinia'
+import Icon from '@/components/Icon.vue'
 import DropDown from '@/components/DropDown.vue'
 import Dialog from '@/components/Dialog.vue'
 import TaskForm from './TaskForm.vue'
@@ -77,7 +77,7 @@ const saveListTitle = () => {
           />
           <div class="flex items-center gap-x-2 absolute right-0 top-[50%] translate-y-[-50%] mr-4">
             <div @click="toggleRenameMode(false)">
-              <Icon icon="ph-x-bold" class="w-4 h-4 cursor-pointer" />
+              <Icon :icon="'x-bold'" :width="4" />
             </div>
           </div>
         </form>
@@ -85,7 +85,7 @@ const saveListTitle = () => {
       <span v-if="currentListInfo?.id > 5">
         <DropDown ref="dropDown">
           <template #trigger>
-            <Icon icon="ph-dots-three-outline-vertical-fill" class="w-5 h-5 cursor-pointer" />
+            <Icon :icon="'dots-three-outline-vertical-fill'" />
           </template>
 
           <template #options>
@@ -117,7 +117,7 @@ const saveListTitle = () => {
             <div class="flex items-center">
               <div class="cursor-pointer mr-2" @click="completeTask(task?.id)">
                 <span :title="task?.completed ? 'Restore task' : 'Complete task'">
-                  <Icon :icon="task?.completed ? 'ph-check-circle-fill' : 'ph-circle'" class="w-4 h-4" />
+                  <Icon :icon="task?.completed ? 'check-circle-fill' : 'circle'" :width="4" />
                 </span>
               </div>
 
@@ -130,13 +130,13 @@ const saveListTitle = () => {
                 @click="importantTask(task?.id)"
                 :title="task?.important ? 'Remove from important' : 'Important'"
               >
-                <Icon :icon="task?.important ? 'ph-tag-chevron-fill' : 'ph-tag-chevron'" class="w-5 h-5" />
+                <Icon :icon="task?.important ? 'tag-chevron-fill' : 'tag-chevron'" />
               </span>
               <span
                 @click="favoriteTask(task?.id)"
                 :title="task?.favorite ? 'Remove from favorites' : 'Add to favorites'"
               >
-                <Icon :icon="task?.favorite ? 'ph-star-fill' : 'ph-star'" class="w-5 h-5" />
+                <Icon :icon="task?.favorite ? 'star-fill' : 'star'" />
               </span>
             </div>
           </div>
