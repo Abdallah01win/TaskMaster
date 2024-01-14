@@ -52,7 +52,7 @@ const resetSelectedTask = () => {
             <div class="flex items-center">
               <div class="cursor-pointer mr-2" @click="completeTask(task?.id)">
                 <span :title="task?.completed ? 'Restore task' : 'Complete task'">
-                  <Icon :icon="task?.completed ? 'check-circle-fill' : 'circle'" :width="4" />
+                  <Icon :icon="task?.completed ? 'check-circle-fill' : 'circle'" :width="'4'" />
                 </span>
               </div>
 

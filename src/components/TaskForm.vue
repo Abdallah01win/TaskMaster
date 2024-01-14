@@ -51,7 +51,7 @@ const create = () => {
         @click="create"
       >
         <span>Add</span>
-        <Icon :icon="'arrow-up-bold'" :width="4" />
+        <Icon :icon="'arrow-up-bold'" :width="'4'" />
       </button>
     </form>
   </div>

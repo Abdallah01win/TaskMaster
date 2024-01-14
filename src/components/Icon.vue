@@ -11,8 +11,8 @@ defineProps({
     default: true,
   },
   width: {
-    type: Number,
-    default: 5,
+    type: String,
+    default: '5',
   },
 })
 </script>
