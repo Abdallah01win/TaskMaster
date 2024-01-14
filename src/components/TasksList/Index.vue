@@ -8,14 +8,12 @@ import Icon from '@/components/Icon.vue'
 import TaskForm from '@/components/TaskForm.vue'
 import TaskDetails from '@/components/TaskDetails.vue'
 import ListHeader from './ListHeader.vue'
+import TaskComponent from '@/components/TasksList/Task.vue'
 
 const tasksStore = useTaskStore()
 const listStore = useListStore()
-
 const { tasksList } = storeToRefs(tasksStore)
 const { currentList } = storeToRefs(listStore)
-
-const { completeTask, favoriteTask, importantTask } = tasksStore
 
 const selectedTask = ref<Task | null>(null)
 
@@ -25,6 +23,10 @@ watch(
     resetSelectedTask()
   },
 )
+
+const selectTask = (task: Task) => {
+  selectedTask.value = task
+}
 
 const resetSelectedTask = () => {
   selectedTask.value = null
@@ -43,38 +45,7 @@ const resetSelectedTask = () => {
           <div v-show="!tasksList.length" class="text-center text-gray-400 mt-6">
             No tasks in {{ currentList?.name }}! Add some to get started.
           </div>
-          <div
-            v-for="task in tasksList"
-            :key="task.id"
-            class="flex items-center justify-between bg-dark-300 rounded-md px-4 py-2.5 cursor-pointer"
-            @click.self="selectedTask = task"
-          >
-            <div class="flex items-center">
-              <div class="cursor-pointer mr-2" @click="completeTask(task?.id)">
-                <span :title="task?.completed ? 'Restore task' : 'Complete task'">
-                  <Icon :icon="task?.completed ? 'check-circle-fill' : 'circle'" :width="'4'" />
-                </span>
-              </div>
-
-              <div :class="task?.completed ? 'line-through text-white/40' : ''">
-                {{ task?.title }}
-              </div>
-            </div>
-            <div class="flex items-center gap-x-3">
-              <span
-                @click="importantTask(task?.id)"
-                :title="task?.important ? 'Remove from important' : 'Important'"
-              >
-                <Icon :icon="task?.important ? 'tag-chevron-fill' : 'tag-chevron'" />
-              </span>
-              <span
-                @click="favoriteTask(task?.id)"
-                :title="task?.favorite ? 'Remove from favorites' : 'Add to favorites'"
-              >
-                <Icon :icon="task?.favorite ? 'star-fill' : 'star'" />
-              </span>
-            </div>
-          </div>
+          <TaskComponent v-for="task in tasksList" :key="task.id" :task="task" @selectTask="selectTask" />
         </div>
       </div>
 

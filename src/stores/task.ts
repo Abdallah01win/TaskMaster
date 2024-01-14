@@ -4,7 +4,7 @@ import { useListStore } from './list'
 import { capitalize, filterTasks } from '@/helpers/index'
 
 export interface Task {
-  id: number
+  readonly id: number
   listId: number
   title: string
   createdAt: string

@@ -4,7 +4,7 @@ import { useTaskStore } from './task'
 import { capitalize } from '@/helpers/index'
 
 export interface List {
-  id: number
+  readonly id: number
   name: string
   icon: string
 }
