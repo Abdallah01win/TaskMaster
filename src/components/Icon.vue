@@ -12,11 +12,13 @@ defineProps({
   },
   width: {
     type: Number,
-    default: 5,
   },
 })
 </script>
 
 <template>
-  <Icon :icon="`ph-${icon}`" :class="[{ 'cursor-pointer': isClickable }, `w-${width} h-${width}`]" />
+  <Icon
+    :icon="`ph-${icon}`"
+    :class="{ 'cursor-pointer': isClickable, 'w-5 h-5': !width, [`w-${width} h-${width}`]: !!width }"
+  />
 </template>

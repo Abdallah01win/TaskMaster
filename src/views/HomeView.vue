@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TasksList from '@/components/TasksList.vue'
+import TasksList from '@/components/TasksList/Index.vue'
 import Navigation from '@/components/Navigation/Index.vue'
 </script>
 

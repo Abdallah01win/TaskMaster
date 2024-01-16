@@ -2,10 +2,10 @@ import { createPinia, setActivePinia } from 'pinia'
 import { beforeAll, describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { useTaskStore } from '@/stores/task'
-import TasksList from '@/components/TasksList.vue'
 import { useListStore } from '@/stores/list'
 import type { List } from '@/stores/list'
 import type { Task } from '@/stores/task'
+import TasksList from '@/components/TasksList/Index.vue'
 
 describe('TasksList', () => {
   let store: any
