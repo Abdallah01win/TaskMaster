@@ -43,7 +43,7 @@ const isCurrentList = (id: number) => selectedList.value === id
       >
         <span v-show="isCurrentList(list.id)" class="absolute left-0 w-0.5 h-full bg-lightGreen"></span>
         <span>
-          <Icon :icon="list.icon" :width="'4'" />
+          <Icon :icon="list.icon" :width="4" />
         </span>
         <span>{{ list.name }}</span>
       </li>

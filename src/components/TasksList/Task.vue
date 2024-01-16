@@ -24,14 +24,14 @@ const emit = defineEmits(['selectTask'])
     <div class="flex items-center">
       <div class="cursor-pointer mr-2" @click="completeTask(task?.id)">
         <span :title="task?.completed ? 'Restore task' : 'Complete task'">
-          <Icon :icon="task?.completed ? 'check-circle-fill' : 'circle'" :width="'4'" />
+          <Icon :icon="task?.completed ? 'check-circle-fill' : 'circle'" :width="4" />
         </span>
       </div>
-
-      <div :class="task?.completed ? 'line-through text-white/40' : ''">
+      <div :class="task?.completed ? 'line-through text-ash-200' : ''">
         {{ task?.title }}
       </div>
     </div>
+
     <div class="flex items-center gap-x-3">
       <span @click="importantTask(task?.id)" :title="task?.important ? 'Remove from important' : 'Important'">
         <Icon :icon="task?.important ? 'tag-chevron-fill' : 'tag-chevron'" />

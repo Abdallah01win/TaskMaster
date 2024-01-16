@@ -67,7 +67,7 @@ const deleteListHandler = () => {
         />
         <div class="flex items-center gap-x-2 absolute right-0 top-[50%] translate-y-[-50%] mr-4">
           <div @click="toggleRenameMode(false)">
-            <Icon :icon="'x-bold'" :width="'4'" />
+            <Icon :icon="'x-bold'" :width="4" />
           </div>
         </div>
       </form>

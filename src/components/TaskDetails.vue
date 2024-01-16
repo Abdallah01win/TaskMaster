@@ -99,7 +99,7 @@ const deleteTask = (id: number) => {
           title="Delete task."
           @click="deleteTask(task?.id)"
         >
-          <Icon :icon="'trash'" :width="'4'" />
+          <Icon :icon="'trash'" :width="4" />
         </button>
       </div>
     </div>
