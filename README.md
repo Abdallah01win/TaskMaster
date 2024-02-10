@@ -1,52 +1,28 @@
-# vue_ts_pinia_project
+# TaskMaster
 
-This template should help get you started developing with Vue 3 in Vite.
+TaskMaster is a powerful task management web application designed to help you take control of your tasks and stay organized. Built with TypeScript, Vue.js, Vitest, and Tailwind CSS, TaskMaster offers a seamless Single Page Application (SPA) experience for efficient task management.
 
-## Recommended IDE Setup
+## Features
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- **Intuitive Task Management**: Easily create, edit, prioritize, and delete tasks with a user-friendly interface.
+- **Customizable Task Categories**: Organize tasks into customizable categories to suit your workflow.
+- **Task Filtering and Sorting**: Quickly find tasks using advanced filtering and sorting options.
+- **Responsive Design**: Enjoy a consistent and optimized experience across devices, whether desktop or mobile.
+- **Dark Mode**: Reduce eye strain and enhance readability with built-in dark mode.
+- **Effortless Task Tracking**: Keep track of task progress and deadlines with visual indicators and notifications.
+- **Secure Authentication**: Ensure your data remains safe with robust authentication and authorization features.
 
-## Type Support for `.vue` Imports in TS
+## Getting Started
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+To get started with TaskMaster, follow these steps:
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+1. Clone this repository to your local machine.
+2. Install dependencies using `npm install`.
+3. Configure environment variables as needed.
+4. Run the test files using `npm run test:unit`.
+5. Run the development server using `npm run dev`.
+5. Access TaskMaster in your browser at the provided link.
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+## Contributing
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+We welcome contributions from the community! If you'd like to contribute to TaskMaster, please read our submit a pull request or open an issue.
