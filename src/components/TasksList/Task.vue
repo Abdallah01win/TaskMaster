@@ -9,7 +9,7 @@ defineProps({
   task: {
     type: Object,
     required: true,
-    default: {},
+    default: () => ({}),
   },
 })
 

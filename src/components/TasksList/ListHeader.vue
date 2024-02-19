@@ -58,7 +58,7 @@ const deleteListHandler = () => {
   <div class="flex items-center justify-between mb-4">
     <div>
       <div v-if="!shouldShowTitleInput" class="text-3xl font-semibold">{{ currentList?.name }}</div>
-      <form v-else="shouldShowTitleInput" class="relative" @submit.prevent="saveListTitle">
+      <form v-else class="relative" @submit.prevent="saveListTitle">
         <input
           ref="titleInput"
           v-model="form.title"
