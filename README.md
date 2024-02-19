@@ -21,7 +21,7 @@ To get started with TaskMaster, follow these steps:
 3. Configure environment variables as needed.
 4. Run the test files using `npm run test:unit`.
 5. Run the development server using `npm run dev`.
-5. Access TaskMaster in your browser at the provided link.
+6. Access TaskMaster in your browser at the provided link.
 
 ## Contributing
 
