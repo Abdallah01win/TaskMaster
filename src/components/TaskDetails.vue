@@ -3,7 +3,6 @@ import { ref, watch } from 'vue'
 import { formatDate } from '@/helpers/index'
 import { useTaskStore } from '@/stores/task'
 import Icon from '@/components/Icon.vue'
-import calendarIcon from '@/assets/icons/calendarIcon.svg'
 
 const props = defineProps({
   task: {
@@ -112,7 +111,7 @@ input[type='datetime-local']::-webkit-calendar-picker-indicator {
   color: white;
   opacity: 1;
   display: block;
-  background: url('@/assets/icons/calendarIcon.svg') no-repeat;
+  background: url('@/assets/icons/calendar.svg') no-repeat;
   width: 18px;
   height: 18px;
   cursor: pointer;
