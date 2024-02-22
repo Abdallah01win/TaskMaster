@@ -12,8 +12,14 @@ export const formatDate = (date: string) => {
   }
   const timeOptions = { hour: 'numeric', minute: 'numeric' }
 
-  const formattedDate = new Date(date).toLocaleDateString(undefined, dateOptions)
-  const formattedTime = new Date(date).toLocaleTimeString(undefined, timeOptions)
+  const formattedDate = new Date(date).toLocaleDateString(
+    undefined,
+    dateOptions as Intl.DateTimeFormatOptions,
+  )
+  const formattedTime = new Date(date).toLocaleTimeString(
+    undefined,
+    timeOptions as Intl.DateTimeFormatOptions,
+  )
 
   return { date: formattedDate, time: formattedTime }
 }
