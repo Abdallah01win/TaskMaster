@@ -17,7 +17,7 @@
       </div>
       <RouterLink
         to="app"
-        class="flex items-center gap-x-2 py-2 px-4 bg-lightGreen rounded-lg hover:scale-[1.05] active:scale-[0.95] transition-all"
+        class="flex items-center gap-x-2 py-2 px-6 bg-lightGreen rounded-full hover:scale-[1.05] active:scale-[0.95] transition-all"
       >
         Get Started
       </RouterLink>
