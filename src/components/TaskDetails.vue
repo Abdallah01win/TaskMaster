@@ -3,6 +3,7 @@ import { ref, watch } from 'vue'
 import { formatDate } from '@/helpers/index'
 import { useTaskStore } from '@/stores/task'
 import Icon from '@/components/Icon.vue'
+import calendarIcon from '@/assets/icons/calendarIcon.svg'
 
 const props = defineProps({
   task: {
