@@ -3,7 +3,7 @@
     <nav class="w-[1024px] xl:w-[1280px] h-[var(--nav-height)] mx-auto flex items-center justify-between">
       <RouterLink to="/" class="mr-10 font-bold text-xl">
         <span>Task</span>
-        <span class="text-lightGreen italic">Master</span>
+        <span class="text-lightBlue italic">Master</span>
       </RouterLink>
       <div class="flex items-center">
         <ul class="flex items-center gap-x-5 text-ash-300">
@@ -17,7 +17,7 @@
       </div>
       <RouterLink
         to="app"
-        class="flex items-center gap-x-2 py-2 px-6 bg-lightGreen rounded-full hover:scale-[1.05] active:scale-[0.95] transition-all"
+        class="flex items-center gap-x-2 py-2 px-6 bg-lightBlue rounded-full hover:scale-[1.05] active:scale-[0.95] transition-all"
       >
         Get Started
       </RouterLink>

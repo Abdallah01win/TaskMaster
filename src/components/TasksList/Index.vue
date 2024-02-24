@@ -41,7 +41,7 @@ const resetSelectedTask = () => {
     >
       <div class="taskList">
         <div class="flex flex-col gap-y-3">
-          <div v-show="!tasksList.length" class="text-center text-gray-400 mt-6">
+          <div v-show="!tasksList.length" class="text-center text-ash-300 mt-6">
             No tasks in {{ currentList?.name }}! Add some to get started.
           </div>
           <TaskComponent v-for="task in tasksList" :key="task.id" :task="task" @selectTask="selectTask" />
