@@ -46,7 +46,7 @@ const create = () => {
       />
 
       <button
-        class="flex items-center gap-x-2 py-2 px-5 bg-lightBlue /text-dark-100 rounded-full /font-semibold hover:scale-[1.05] active:scale-[0.95] transition-all"
+        class="flex items-center gap-x-2 py-2 px-5 bg-lightBlue rounded-full hover:scale-[1.05] active:scale-[0.95] transition-all"
         title="Add new task"
         @click="create"
       >
