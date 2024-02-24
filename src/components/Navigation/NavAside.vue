@@ -60,7 +60,7 @@ const isCurrentList = (id: number) => selectedList.value === id
               type="text"
               name="listName"
               placeholder="Add new list"
-              class="w-full bg-transparent text-white focus:outline-none placeholder:text-ash-300"
+              class="w-full bg-transparent text-white focus:outline-none placeholder:text-ash-200"
             />
           </form>
           <span v-show="!showInput">Add new list</span>
