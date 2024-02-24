@@ -67,7 +67,7 @@ const deleteTask = (id: number) => {
             v-else
             v-model="form.description"
             type="text"
-            class="bg-transparent focus:outline-none w-full"
+            class="bg-transparent focus:outline-none w-full placeholder:text-ash-200"
             name="description"
             placeholder="Description"
             @keypress.enter="saveInfo"
@@ -82,7 +82,7 @@ const deleteTask = (id: number) => {
 
           <input
             v-else
-            class="bg-transparent focus:outline-none text-gray-300 w-full"
+            class="bg-transparent focus:outline-none text-gray-300 w-full placeholder:text-ash-200"
             name="due_date"
             placeholder="Due Date"
             type="text"

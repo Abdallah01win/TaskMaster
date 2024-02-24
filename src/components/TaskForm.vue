@@ -42,11 +42,11 @@ const create = () => {
         type="text"
         name="title"
         placeholder="Add a task"
-        class="bg-transparent text-white w-full focus:outline-none"
+        class="bg-transparent text-white w-full focus:outline-none placeholder:text-ash-200"
       />
 
       <button
-        class="flex items-center gap-x-2 py-2 px-4 bg-lightGreen text-dark-100 rounded font-semibold hover:scale-[1.05] active:scale-[0.95] transition-all"
+        class="flex items-center gap-x-2 py-2 px-5 bg-lightBlue rounded-full hover:scale-[1.05] active:scale-[0.95] transition-all"
         title="Add new task"
         @click="create"
       >

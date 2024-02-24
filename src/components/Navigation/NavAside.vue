@@ -41,7 +41,7 @@ const isCurrentList = (id: number) => selectedList.value === id
         class="flex items-center relative gap-x-2.5 py-2 px-4 border-b border-ash-100 hover:bg-dark-200 cursor-pointer"
         @click="setSelectedList(list.id)"
       >
-        <span v-show="isCurrentList(list.id)" class="absolute left-0 w-0.5 h-full bg-lightGreen"></span>
+        <span v-show="isCurrentList(list.id)" class="absolute left-0 w-0.5 h-full bg-lightBlue"></span>
         <span>
           <Icon :icon="list.icon" :width="4" />
         </span>
@@ -60,7 +60,7 @@ const isCurrentList = (id: number) => selectedList.value === id
               type="text"
               name="listName"
               placeholder="Add new list"
-              class="w-full bg-transparent text-white focus:outline-none"
+              class="w-full bg-transparent text-white focus:outline-none placeholder:text-ash-200"
             />
           </form>
           <span v-show="!showInput">Add new list</span>

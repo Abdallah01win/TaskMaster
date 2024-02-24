@@ -62,8 +62,9 @@ const deleteListHandler = () => {
         <input
           ref="titleInput"
           v-model="form.title"
+          placeholder="List title"
           type="text"
-          class="bg-dark-100 rounded-t-md px-4 py-2 text-xl font-semibold outline-none focus:ring-0"
+          class="bg-dark-100 rounded-t-md px-4 py-2 text-xl font-semibold outline-none focus:ring-0 placeholder:text-ash-200 placeholder:text-base"
         />
         <div class="flex items-center gap-x-2 absolute right-0 top-[50%] translate-y-[-50%] mr-4">
           <div @click="toggleRenameMode(false)">
