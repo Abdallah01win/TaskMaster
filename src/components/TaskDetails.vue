@@ -2,15 +2,10 @@
 import { ref, watch } from 'vue'
 import { formatDate } from '@/helpers/index'
 import { useTaskStore } from '@/stores/task'
+import type { Task } from '@/stores/task'
 import Icon from '@/components/Icon.vue'
 
-const props = defineProps({
-  task: {
-    type: Object,
-    required: true,
-    default: () => ({}),
-  },
-})
+const props = defineProps<{ task: Task }>()
 
 const emit = defineEmits(['close'])
 
@@ -19,7 +14,7 @@ const { setTaskInfo, removeTask } = taskStore
 
 const minDate = new Date().toISOString().split('T')[0]
 
-const form = ref({
+const form = ref<{ description: string | undefined; dueDate: string | undefined }>({
   description: '',
   dueDate: '',
 })

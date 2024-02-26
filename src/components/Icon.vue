@@ -1,19 +1,6 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
-
-defineProps({
-  icon: {
-    type: String,
-    default: '',
-  },
-  isClickable: {
-    type: Boolean,
-    default: true,
-  },
-  width: {
-    type: Number,
-  },
-})
+withDefaults(defineProps<{ icon: string; isClickable?: boolean; width?: number }>(), { isClickable: true })
 </script>
 
 <template>

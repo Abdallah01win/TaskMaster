@@ -5,12 +5,7 @@ import { storeToRefs } from 'pinia'
 import { initTask } from '@/helpers'
 import Icon from '@/components/Icon.vue'
 
-const props = defineProps({
-  selectedList: {
-    type: Number,
-    required: true,
-  },
-})
+const props = defineProps<{ selectedList: number }>()
 
 const tasksStore = useTaskStore()
 

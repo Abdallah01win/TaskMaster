@@ -1,17 +1,12 @@
 <script setup lang="ts">
 import { useTaskStore } from '@/stores/task'
+import type { Task } from '@/stores/task'
 import Icon from '@/components/Icon.vue'
 
 const tasksStore = useTaskStore()
 const { completeTask, favoriteTask, importantTask } = tasksStore
 
-defineProps({
-  task: {
-    type: Object,
-    required: true,
-    default: () => ({}),
-  },
-})
+defineProps<{ task: Task }>()
 
 const emit = defineEmits(['selectTask'])
 </script>
