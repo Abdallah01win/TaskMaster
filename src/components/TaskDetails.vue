@@ -7,7 +7,7 @@ import Icon from '@/components/Icon.vue'
 
 const props = defineProps<{ task: Task }>()
 
-const emit = defineEmits(['close'])
+const emit = defineEmits<{ (e: 'close'): void }>()
 
 const taskStore = useTaskStore()
 const { setTaskInfo, removeTask } = taskStore
