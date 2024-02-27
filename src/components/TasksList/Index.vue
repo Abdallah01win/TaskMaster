@@ -48,7 +48,7 @@ const resetSelectedTask = () => {
         </div>
       </div>
 
-      <TaskDetails v-show="selectedTask" :task="selectedTask ?? {}" @close="resetSelectedTask" />
+      <TaskDetails v-if="selectedTask" :task="selectedTask" @close="resetSelectedTask" />
     </div>
     <TaskForm class="mt-auto" :selected-list="currentList?.id" />
   </div>

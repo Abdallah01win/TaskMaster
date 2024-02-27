@@ -15,6 +15,8 @@ describe('TaskDetails', () => {
     completed: false,
     description: '',
     createdAt: '2022-01-01T00:00:00.000Z',
+    favorite: false,
+    important: false,
   }
 
   beforeAll(() => {
