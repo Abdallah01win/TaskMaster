@@ -8,7 +8,7 @@ const { completeTask, favoriteTask, importantTask } = tasksStore
 
 defineProps<{ task: Task }>()
 
-const emit = defineEmits(['selectTask'])
+const emit = defineEmits<{ selectTask: [task: Task] }>()
 </script>
 
 <template>
