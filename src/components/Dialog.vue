@@ -1,16 +1,10 @@
 <script setup lang="ts">
 import Icon from '@/components/Icon.vue'
 
-defineProps({
-  title: {
-    type: String,
-    required: true,
-  },
-  msg: {
-    type: String,
-    required: true,
-  },
-})
+defineProps<{
+  title: string
+  msg: string
+}>()
 
 const emit = defineEmits(['cancel'])
 </script>
