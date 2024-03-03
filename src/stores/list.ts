@@ -1,4 +1,4 @@
-import { ref, computed } from 'vue'
+import { ref, computed, type ComputedRef } from 'vue'
 import { defineStore } from 'pinia'
 import { useTaskStore } from './task'
 import { capitalize } from '@/helpers/index'
@@ -44,10 +44,11 @@ export const useListStore = defineStore('list', () => {
   const selectedList = ref<number>(defaultLists[0].id)
 
   const getSelectedList = computed(() => {
-    return lists.value.find(({ id }) => id === selectedList.value) || lists.value[0]
+    const list = lists.value.find(({ id }) => id === selectedList.value)
+    return list || lists.value[0]
   })
 
-  const currentList = ref<List>(getSelectedList.value)
+  const currentList = ref<ComputedRef<List>>(getSelectedList)
 
   const nextId = computed(() => {
     return lists.value[lists.value.length - 1].id + 1
