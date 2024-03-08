@@ -25,4 +25,4 @@ To get started with TaskMaster, follow these steps:
 
 ## Contributing
 
-We welcome contributions from the community! If you'd like to contribute to TaskMaster, please read our submit a pull request or open an issue.
+We welcome contributions from the community! If you'd like to contribute to TaskMaster, please submit a pull request or open an issue.
