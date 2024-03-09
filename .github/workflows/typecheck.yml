@@ -1,0 +1,20 @@
+name: TypeCheck
+
+on:
+  pull_request:
+    branches:
+      - dev
+
+jobs:
+  prettier:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install TypeScript
+        run: npm install --save-dev typescript
+
+      - name: Run TypeCheck
+        run: vue-tsc --noEmit -p tsconfig.vitest.json --composite false
