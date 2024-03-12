@@ -3,8 +3,7 @@ import { beforeAll, describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { useTaskStore } from '@/stores/task'
 import { useListStore } from '@/stores/list'
-import type { List } from '@/types'
-import type { Task } from '@/types'
+import type { List, Task } from '@/types'
 import TasksList from '@/components/TasksList/Index.vue'
 
 describe('TasksList', () => {
