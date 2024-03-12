@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Task } from '@/stores/task'
+import type { Task } from '@/types'
 import { computed, ref, nextTick, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useListStore } from '@/stores/list'

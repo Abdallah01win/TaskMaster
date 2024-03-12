@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Task } from '@/stores/task'
+import type { Task } from '@/types'
 import { ref, watch } from 'vue'
 import { useTaskStore } from '@/stores/task'
 import { useListStore } from '@/stores/list'

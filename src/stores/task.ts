@@ -1,19 +1,8 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import { useListStore } from './list'
-import { capitalize, filterTasks } from '@/helpers/index'
-
-export interface Task {
-  readonly id: number
-  listId: number
-  title: string
-  createdAt: string
-  completed: boolean
-  favorite: boolean
-  important: boolean
-  description?: string
-  dueDate?: string
-}
+import { capitalize, filterTasks } from '@/helpers'
+import type { Task } from '@/types'
 
 export const useTaskStore = defineStore('task', () => {
   const listStore = useListStore()
