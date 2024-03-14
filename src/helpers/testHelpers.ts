@@ -18,4 +18,4 @@ const createTestTask = (store: any, id: number, name: string) => {
   return store.addTask({ listId: id, title: name, dueDate: new Date() })
 }
 
-export default { createTestList, createTestTask, findList,  findTask }
+export default { createTestList, createTestTask, findList, findTask }
