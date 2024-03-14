@@ -13,5 +13,5 @@ export interface Task {
   favorite: boolean
   important: boolean
   description?: string
-  dueDate?: string,
+  dueDate?: string
 }
