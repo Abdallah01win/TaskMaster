@@ -1,17 +1,21 @@
 import { capitalize } from '.'
 import type { List, Task } from '@/types'
 
-const findTaskByName = (store: any, name: string) => {
-  return store.tasks.find(({ title }: Task) => title === capitalize(name))
+function findTask<T extends keyof Task>(store: any, key: T, val: Task[T]): Task {
+  return store.tasks.find((el: Task) => el[key] === val)
 }
 
-const findListByName = (store: any, name: string) => {
-  return store.lists.find((el: List) => el.name === capitalize(name))
+function findList<T extends keyof List>(store: any, key: T, val: List[T]): List {
+  return store.lists.find((el: List) => el[key] === val)
 }
 
 const createTestList = (store: any, name: string) => {
   store.createList(name)
-  return findListByName(store, name)
+  return findList(store, 'name', capitalize(name))
 }
 
-export default { findListByName, findTaskByName, createTestList }
+const createTestTask = (store: any, id: number, name: string) => {
+  return store.addTask({ listId: id, title: name, dueDate: new Date() })
+}
+
+export default { createTestList, createTestTask, findList,  findTask }
