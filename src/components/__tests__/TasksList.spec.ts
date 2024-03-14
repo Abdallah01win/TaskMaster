@@ -5,10 +5,12 @@ import { useTaskStore } from '@/stores/task'
 import { useListStore } from '@/stores/list'
 import type { List, Task } from '@/types'
 import TasksList from '@/components/TasksList/Index.vue'
+import { capitalize, createTestList, findTaskByName } from '@/helpers'
 
 describe('TasksList', () => {
   let store: any
   let listStore: any
+  const testList = 'testList'
 
   beforeAll(() => {
     setActivePinia(createPinia())
@@ -31,31 +33,32 @@ describe('TasksList', () => {
   })
 
   it('Deletes user lists', () => {
+    const testTask = 'testTask'
     listStore = useListStore()
-    listStore.createList('testList')
 
-    const list = listStore.lists.find(({ name }: List) => name === 'TestList')
+    const list = createTestList(listStore, testList)
     expect(list).toBeTruthy()
 
-    store.addTask({ listId: list.id, title: 'testTask', dueDate: new Date() })
-    const task = store.tasks.find(({ title }: Task) => title === 'TestTask')
-    expect(task).toBeTruthy()
+    store.addTask({ listId: list.id, title: testTask, dueDate: new Date() })
+    expect(findTaskByName(store, testTask)).toBeTruthy()
 
     listStore.deleteList(list.id)
+
     const deletedList = listStore.lists.find(({ id }: List) => id === list.id)
-    const deletedTask = store.tasks.find(({ listId }: Task) => listId === list.id)
     expect(deletedList).toBeUndefined()
+    
+    const deletedTask = store.tasks.find(({ listId }: Task) => listId === list.id)
     expect(deletedTask).toBeUndefined()
   })
 
   it('Renames user lists', () => {
+    const secondListName = 'testList2'
     listStore = useListStore()
-    listStore.createList('testList')
-    const list = listStore.lists.find(({ name }: List) => name === 'TestList')
 
-    listStore.renameList(list.id, 'testList2')
+    const list = createTestList(listStore, testList)
+    listStore.renameList(list.id, secondListName)
     const renamedList = listStore.lists.find(({ id }: List) => id === list.id)
 
-    expect(renamedList.name).toBe('TestList2')
+    expect(renamedList.name).toBe(capitalize(secondListName))
   })
 })
