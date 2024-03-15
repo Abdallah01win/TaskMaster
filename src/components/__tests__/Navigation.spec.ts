@@ -4,7 +4,7 @@ import { mount } from '@vue/test-utils'
 import { useListStore } from '@/stores/list'
 import router from '@/router'
 import Navigation from '@/components/Navigation/Index.vue'
-import type { List } from '@/types'
+import { capitalize, findList } from '@/helpers'
 
 const globalOptions = {
   global: {
@@ -14,6 +14,7 @@ const globalOptions = {
 
 describe('Navigation', () => {
   let store: any
+  const testList = 'testList'
 
   beforeAll(() => {
     setActivePinia(createPinia())
@@ -35,10 +36,9 @@ describe('Navigation', () => {
   it('Creates a new list', async () => {
     const wrapper = mount(Navigation, globalOptions)
 
-    await wrapper.find('input').setValue('testList')
+    await wrapper.find('input').setValue(testList)
     await wrapper.find('form').trigger('submit')
 
-    const list = store.lists.find((list: List) => list.name === 'TestList')
-    expect(list).toBeTruthy()
+    expect(findList(store, 'name', capitalize(testList))).toBeTruthy()
   })
 })
