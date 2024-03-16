@@ -3,7 +3,6 @@ import { beforeAll, describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { useTaskStore } from '@/stores/task'
 import { setStoreData, findTask } from '@/helpers'
-import type { Task } from '@/types'
 import TaskForm from '@/components/TaskForm.vue'
 
 describe('TaskForm', () => {
