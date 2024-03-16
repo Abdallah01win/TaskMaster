@@ -18,4 +18,14 @@ const createTestTask = (store: any, id: number, name: string) => {
   return store.addTask({ listId: id, title: name, dueDate: new Date() })
 }
 
-export default { createTestList, createTestTask, findList, findTask }
+const setStoreData = (store: any, listId: number, nextId: number) => {
+  Object.assign(store, { selectedList: listId, nextId: nextId })
+
+  return {
+    props: {
+      selectedList: store?.selectedList,
+    },
+  }
+}
+
+export default { createTestList, createTestTask, findList, findTask, setStoreData }

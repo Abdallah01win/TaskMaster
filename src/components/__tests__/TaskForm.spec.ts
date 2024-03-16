@@ -2,20 +2,12 @@ import { createPinia, setActivePinia } from 'pinia'
 import { beforeAll, describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { useTaskStore } from '@/stores/task'
+import { setStoreData, findList, findTask } from '@/helpers'
 import type { Task } from '@/types'
 import TaskForm from '@/components/TaskForm.vue'
 
 describe('TaskForm', () => {
   let store: any
-  let props: any
-
-  const setStoreData = (listId: number, nextId: number) => {
-    Object.assign(store, { selectedList: listId, nextId: nextId })
-
-    props = {
-      selectedList: store?.selectedList,
-    }
-  }
 
   beforeAll(() => {
     setActivePinia(createPinia())
@@ -23,33 +15,30 @@ describe('TaskForm', () => {
   })
 
   it('Renders properly', () => {
-    setStoreData(1, 5)
-    const wrapper = mount(TaskForm, { props })
+    const wrapper = mount(TaskForm, setStoreData(store, 1, 5))
 
     expect(wrapper).toBeTruthy()
   })
 
   it('Adds Tasks to MyDay list', async () => {
-    setStoreData(1, 5)
-    const wrapper = mount(TaskForm, { props })
+    const wrapper = mount(TaskForm, setStoreData(store, 1, 5))
 
     await wrapper.find('input').setValue('testTask')
     await wrapper.find('form').trigger('submit')
 
-    const task = store.tasks.find((task: Task) => task.id === 5)
+    const task = findTask(store, 'id', 5)
 
     expect(task).toBeTruthy()
     expect(task.listId).toBe(1)
   })
 
   it('Adds tasks to Important list', async () => {
-    setStoreData(2, 6)
-    const wrapper = mount(TaskForm, { props })
+    const wrapper = mount(TaskForm, setStoreData(store, 2, 6))
 
     await wrapper.find('input').setValue('testTask')
     await wrapper.find('form').trigger('submit')
 
-    const task = store.tasks.find((task: Task) => task.id === 6)
+    const task = findTask(store, 'id', 6)
 
     expect(task).toBeTruthy()
     expect(task.listId).toBe(2)
@@ -57,13 +46,12 @@ describe('TaskForm', () => {
   })
 
   it('Adds tasks to Favorite list', async () => {
-    setStoreData(3, 7)
-    const wrapper = mount(TaskForm, { props })
+    const wrapper = mount(TaskForm, setStoreData(store, 3, 7))
 
     await wrapper.find('input').setValue('testTask')
     await wrapper.find('form').trigger('submit')
 
-    const task = store.tasks.find((task: Task) => task.id === 7)
+    const task = findTask(store, 'id', 7)
 
     expect(task).toBeTruthy()
     expect(task.listId).toBe(3)
@@ -71,13 +59,12 @@ describe('TaskForm', () => {
   })
 
   it('Adds tasks to Favorite list', async () => {
-    setStoreData(4, 8)
-    const wrapper = mount(TaskForm, { props })
+    const wrapper = mount(TaskForm, setStoreData(store, 4, 8))
 
     await wrapper.find('input').setValue('testTask')
     await wrapper.find('form').trigger('submit')
 
-    const task = store.tasks.find((task: Task) => task.id === 8)
+    const task = findTask(store, 'id', 8)
 
     expect(task).toBeTruthy()
     expect(task.listId).toBe(4)
@@ -85,13 +72,12 @@ describe('TaskForm', () => {
   })
 
   it('Adds tasks to custom lists', async () => {
-    setStoreData(9, 10)
-    const wrapper = mount(TaskForm, { props })
+    const wrapper = mount(TaskForm, setStoreData(store, 9, 9))
 
     await wrapper.find('input').setValue('testTask')
     await wrapper.find('form').trigger('submit')
 
-    const task = store.tasks.find((task: Task) => task.id === 10)
+    const task = findTask(store, 'id', 9)
 
     expect(task).toBeTruthy()
     expect(task.listId).toBe(9)
