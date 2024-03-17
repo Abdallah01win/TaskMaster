@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import NavBar from '@/components/Navigation/NavBar.vue'
+import HomeNav from '@/components/HomeNav.vue'
 </script>
 
 <template>
   <section>
-    <NavBar />
+    <HomeNav />
     <main class="background h-[var(--main-height)]">
       <h1 class="text-6xl font-bold leading-tight text-center max-w-[75%] mx-auto pt-14">
         Maximize every second of your day with Masterful
