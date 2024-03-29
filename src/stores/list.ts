@@ -1,41 +1,9 @@
 import { ref, computed, type ComputedRef } from 'vue'
 import { defineStore } from 'pinia'
 import { useTaskStore } from './task'
-import { capitalize } from '@/helpers/index'
-
-export interface List {
-  readonly id: number
-  name: string
-  icon: string
-}
-
-const defaultLists: List[] = [
-  {
-    id: 1,
-    name: 'My Day',
-    icon: 'sun',
-  },
-  {
-    id: 2,
-    name: 'Important',
-    icon: 'warning-circle',
-  },
-  {
-    id: 3,
-    name: 'Favorites',
-    icon: 'star',
-  },
-  {
-    id: 4,
-    name: 'Completed',
-    icon: 'check-circle',
-  },
-  {
-    id: 5,
-    name: 'All Tasks',
-    icon: 'list-checks',
-  },
-]
+import { capitalize } from '@/helpers'
+import { defaultLists } from '@/constants'
+import type { List } from '@/types'
 
 export const useListStore = defineStore('list', () => {
   const taskStore = useTaskStore()

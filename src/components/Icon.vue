@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { Icon } from '@iconify/vue'
-import { staticIconClasses } from '@/helpers'
+import { staticIconClasses } from '@/constants'
 
 const props = withDefaults(defineProps<{ icon: string; isClickable?: boolean; width?: number }>(), {
   isClickable: true,

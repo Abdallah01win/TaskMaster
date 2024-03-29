@@ -1,4 +1,4 @@
-import type { Task } from '@/stores/task'
+import type { Task } from '@/types'
 
 export const capitalize = (str: string) => {
   return `${str.charAt(0).toUpperCase()}${str.slice(1)}`
@@ -24,7 +24,7 @@ export const formatDate = (date: string) => {
   return { date: formattedDate, time: formattedTime }
 }
 
-export function isToday(dateString: string) {
+export const isToday = (dateString: string) => {
   const date = new Date(dateString)
   const today = new Date()
 
@@ -35,7 +35,7 @@ export function isToday(dateString: string) {
   )
 }
 
-export function filterTasks(task: Task, selectedList: number) {
+export const filterTasks = (task: Task, selectedList: number) => {
   switch (selectedList) {
     case 1:
       return task?.dueDate ? isToday(task?.dueDate) : null
@@ -52,7 +52,7 @@ export function filterTasks(task: Task, selectedList: number) {
   }
 }
 
-export function initTask(listId: number) {
+export const initTask = (listId: number) => {
   const currentDate = new Date().toISOString()
 
   return {
@@ -63,9 +63,3 @@ export function initTask(listId: number) {
     createdAt: currentDate,
   }
 }
-
-export const staticIconClasses = [
-  { class: 'w-3 h-3', value: 3 },
-  { class: 'w-4 h-4', value: 4 },
-  { class: 'w-5 h-5', value: 5 },
-]

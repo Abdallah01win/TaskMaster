@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import { formatDate } from '@/helpers/index'
+import { formatDate } from '@/helpers'
 import { useTaskStore } from '@/stores/task'
-import type { Task } from '@/stores/task'
+import type { Task } from '@/types'
 import Icon from '@/components/Icon.vue'
 
 const props = defineProps<{ task: Task }>()

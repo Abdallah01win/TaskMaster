@@ -4,7 +4,7 @@ import { mount } from '@vue/test-utils'
 import { useListStore } from '@/stores/list'
 import router from '@/router'
 import Navigation from '@/components/Navigation/Index.vue'
-import type { List } from '@/stores/list'
+import type { List } from '@/types'
 
 const globalOptions = {
   global: {

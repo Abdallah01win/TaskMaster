@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useTaskStore } from '@/stores/task'
-import type { Task } from '@/stores/task'
+import type { Task } from '@/types'
 import Icon from '@/components/Icon.vue'
 
 const tasksStore = useTaskStore()

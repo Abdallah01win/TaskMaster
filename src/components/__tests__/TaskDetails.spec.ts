@@ -2,9 +2,9 @@ import { beforeAll, describe, expect, it } from 'vitest'
 import { createPinia, setActivePinia } from 'pinia'
 import { mount } from '@vue/test-utils'
 import { useTaskStore } from '@/stores/task'
-import { formatDate } from '@/helpers/index'
+import { formatDate } from '@/helpers'
 import TaskDetails from '@/components/TaskDetails.vue'
-import type { Task } from '@/stores/task'
+import type { Task } from '@/types'
 
 describe('TaskDetails', () => {
   let store: any
