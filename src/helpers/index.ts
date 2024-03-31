@@ -1,4 +1,7 @@
+import testHelpers from './testHelpers'
 import type { Task } from '@/types'
+
+export const { createTestList, createTestTask, findList, findTask } = testHelpers
 
 export const capitalize = (str: string) => {
   return `${str.charAt(0).toUpperCase()}${str.slice(1)}`
